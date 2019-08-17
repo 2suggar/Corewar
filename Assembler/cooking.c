@@ -6,23 +6,25 @@
 /*   By: lcutjack <lcutjack@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/17 14:12:42 by lcutjack          #+#    #+#             */
-/*   Updated: 2019/08/17 16:13:48 by lcutjack         ###   ########.fr       */
+/*   Updated: 2019/08/17 22:37:33 by lcutjack         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
 
-static void write_magic(int new)
+static void write_magic(int new, t_out *out)
 {
     char    *lol;
     int     value;
     int     i;
+    char    magic[4];
 
     i = 4;
     value = COREWAR_EXEC_MAGIC;
     lol = (char*)&value;
     while (--i >= 0)
-        write(new, lol + i, 1);
+        magic[i] = *(lol + i);
+    out->header = magic;
 }
 
 static void read_name(int fd, int new)
@@ -32,7 +34,9 @@ static void read_name(int fd, int new)
     char    *start;
 
     get_next_line(fd, &line);
-    if (ft_strcmp(NAME_CMD_STRING, line))
+	while (!*line || *line == COMMENT_CHAR)
+		get_next_line(fd, &line);
+    if (ft_strncmp(NAME_CMD_STRING, line, ft_strlen(NAME_CMD_STRING)))
     {
         ft_bzero(name, PROG_NAME_LENGTH);
         start = ft_strchr(line, '"');
@@ -48,7 +52,9 @@ static void read_comment(int fd, int new)
     char *start;
 
     get_next_line(fd, &line);
-    if (ft_strcmp(COMMENT_CMD_STRING, line))
+	while (!*line || *line == COMMENT_CHAR)
+		get_next_line(fd, &line);
+    if (ft_strncmp(COMMENT_CMD_STRING, line, ft_strlen(COMMENT_CMD_STRING)))
     {
         ft_bzero(comment, COMMENT_LENGTH);
         start = ft_strchr(line, '"');
@@ -59,10 +65,14 @@ static void read_comment(int fd, int new)
 
 
 
-void cook_raw(int fd, int new)
+void    cook_raw(int fd, int new)
 {
-    write_magic(new);
-    read_name(fd, new);
-    read_comment(fd, new);
+    t_out *out;
+
+	if (!(out = ft_memalloc(sizeof(t_out))))
+		return ;
+    write_magic(out);
+    read_name(fd, out);
+    read_comment(fd, out);
     // read_code();
 }
