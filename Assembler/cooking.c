@@ -6,15 +6,28 @@
 /*   By: lcutjack <lcutjack@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/17 14:12:42 by lcutjack          #+#    #+#             */
-/*   Updated: 2019/08/17 15:05:52 by lcutjack         ###   ########.fr       */
+/*   Updated: 2019/08/17 16:13:48 by lcutjack         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
 
+static void write_magic(int new)
+{
+    char    *lol;
+    int     value;
+    int     i;
+
+    i = 4;
+    value = COREWAR_EXEC_MAGIC;
+    lol = (char*)&value;
+    while (--i >= 0)
+        write(new, lol + i, 1);
+}
+
 static void read_name(int fd, int new)
 {
-    char    name[PROG_NAME_LENGTH + 1];
+    char    name[PROG_NAME_LENGTH + 4];
     char    *line;
     char    *start;
 
@@ -30,7 +43,7 @@ static void read_name(int fd, int new)
 
 static void read_comment(int fd, int new)
 {
-    char comment[COMMENT_LENGTH + 1];
+    char comment[COMMENT_LENGTH + 4];
     char *line;
     char *start;
 
@@ -44,8 +57,11 @@ static void read_comment(int fd, int new)
     write(new, comment, COMMENT_LENGTH);
 }
 
+
+
 void cook_raw(int fd, int new)
 {
+    write_magic(new);
     read_name(fd, new);
     read_comment(fd, new);
     // read_code();
