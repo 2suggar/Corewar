@@ -6,7 +6,7 @@
 /*   By: lcutjack <lcutjack@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/04 15:20:54 by lcutjack          #+#    #+#             */
-/*   Updated: 2019/08/18 14:24:52 by lcutjack         ###   ########.fr       */
+/*   Updated: 2019/08/18 16:24:29 by lcutjack         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,11 @@ static char *msg[15] = {
     " have incorrect extension  [must be \".s\"]\n",
     " can't be created new file\n",
     "; champion name is not correct",
-    "; champion comment is not correct"
+    "; champion comment is not correct",
+    "; double name",
+    "; double comment",
+    "; no name",
+    "; no comment"
 };
 
 void say_error(char *fname, char id)
