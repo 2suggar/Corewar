@@ -6,7 +6,7 @@
 /*   By: lcutjack <lcutjack@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/17 14:12:42 by lcutjack          #+#    #+#             */
-/*   Updated: 2019/08/18 13:45:42 by lcutjack         ###   ########.fr       */
+/*   Updated: 2019/08/18 14:34:48 by lcutjack         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,36 +25,44 @@ static void write_magic(t_out *out)
         out->head[i] = *(lol + i);
 }
 
-static void read_name(int fd, t_out *out)
+static void read_name(int fd, t_out *out, char *line)
 {
-    char    *line;
     char    *start;
-
-	if (ft_strncmp(NAME_CMD_STRING, line, ft_strlen(NAME_CMD_STRING)))
-    {
-
-        start = ft_strchr(line, '"');
-        ft_strncpy(out->name, start + 1, ft_strchr(start + 1, '"') - start - 1);
-    }
+	char	*end;
+	
+    if (!(start = ft_strchr(line, '"')) && (out->error = 3))
+		return ;
+	if ((end = ft_strchr(start + 1, '"')))
+		ft_strncpy(out->name, start + 1, end - start - 1);
+	else
+	{
+		ft_strcat(out->name, start + 1);
+		while (get_next_line(fd, &start) && !(end = ft_strchr(start, '"')))
+		{
+			ft_strcat(out->name, start);
+			free(start);
+		}
+		ft_strncat(out->name, start, end - start - 1);
+	}
 }
 
-static void read_comment(int fd, t_out *out)
+static void read_comment(int fd, t_out *out, char *line)
 {
-    char    *line;
     char    *start;
-    char    *end;
-
-	start = ft_strchr(line, '"');
+	char	*end;
+	
+    if (!(start = ft_strchr(line, '"')) && (out->error = 4))
+		return ;
 	if ((end = ft_strchr(start + 1, '"')))
 		ft_strncpy(out->comm, start + 1, end - start - 1);
 	else
 	{
-		ft_strcat(out->comm, start);
-       	while (get_next_line(fd, start) && !(end = ft_strchr(start, '"')))
-       	{
+		ft_strcat(out->comm, start + 1);
+		while (get_next_line(fd, &start) && !(end = ft_strchr(start, '"')))
+		{
 			ft_strcat(out->comm, start);
 			free(start);
-       	}
+		}
 		ft_strncat(out->comm, start, end - start - 1);
 	}
 }
@@ -74,13 +82,16 @@ static void	read_n_c(int fd, t_out *out)
 			get_next_line(fd, &line);
 		}
 		if (ft_strncmp(COMMENT_CMD_STRING, line, ft_strlen(COMMENT_CMD_STRING)))
-			read_comment(fd, out);
+			read_comment(fd, out, line);
 		else if (ft_strncmp(NAME_CMD_STRING, line, ft_strlen(NAME_CMD_STRING)))
-			read_name(fd, out);
+			read_name(fd, out, line);
+		free(line);
+		if (out->error)
+			return ;
 	}
 }	
 
-void    cook_raw(int fd, int new)
+void    cook_raw(int fd, int new, char *fname)
 {
     t_out	*out;
 
@@ -89,5 +100,8 @@ void    cook_raw(int fd, int new)
 	ft_bzero(out, sizeof(t_out));
 	write_magic(out);
 	read_n_c(fd, out);
-    // read_code();
+	if (out->error)
+		say_error(fname, out->error);
+    read_code(fd, out);
+	new = 0;
 }

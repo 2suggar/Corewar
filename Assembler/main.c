@@ -6,7 +6,7 @@
 /*   By: lcutjack <lcutjack@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/26 17:34:26 by lcutjack          #+#    #+#             */
-/*   Updated: 2019/08/17 14:52:42 by lcutjack         ###   ########.fr       */
+/*   Updated: 2019/08/18 14:26:06 by lcutjack         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ int			main(int ac, char **av){
 			else if ((new = open(fname, O_RDWR | O_CREAT, 0600)) < 3)
 				say_error(*av, 2);
 			else
-				cook_raw(fd, new);
+				cook_raw(fd, new, fname);
 			close(fd);
 			close(new);
 		}

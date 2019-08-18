@@ -1,4 +1,8 @@
 # hey ladies
 
-.name "MY NAME"
-.comment "MY COMMENT"
+.name "MY 
+
+NAME"
+.comment "MY 
+
+COMMENT"

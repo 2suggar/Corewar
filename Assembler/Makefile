@@ -6,7 +6,7 @@
 #    By: lcutjack <lcutjack@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/07/19 16:35:27 by lcutjack          #+#    #+#              #
-#    Updated: 2019/08/17 16:14:13 by lcutjack         ###   ########.fr        #
+#    Updated: 2019/08/18 14:29:27 by lcutjack         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ FLAGS = -Wall -Wextra -Werror
 
 LIB = ../libft/libft.a
 INC = -Iasm.h -I../libft/includes/
-SRC = main.c error_msg.c cooking.c
+SRC = main.c error_msg.c cooking.c reading_code.c
 OBJ = $(SRC:.o=.c)
 
 
