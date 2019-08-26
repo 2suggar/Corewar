@@ -6,7 +6,7 @@
 /*   By: lcutjack <lcutjack@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/26 17:41:30 by lcutjack          #+#    #+#             */
-/*   Updated: 2019/08/18 16:18:02 by lcutjack         ###   ########.fr       */
+/*   Updated: 2019/08/26 20:53:50 by lcutjack         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,9 @@ typedef struct	s_out {
 }				t_out;
 
 void    say_error(char *fname, char id);
-void	cook_raw(int fd, int new, char *fname);
+
 void    read_code(int fd, t_out *out);
+char	cook_raw(int fd, t_out **out); // вернет код ошибки в случае провала и 0 при успешном декодировании
 
 int     empty(char *s, size_t n);
 

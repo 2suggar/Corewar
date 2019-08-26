@@ -6,13 +6,14 @@
 /*   By: lcutjack <lcutjack@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/04 15:20:54 by lcutjack          #+#    #+#             */
-/*   Updated: 2019/08/18 16:24:29 by lcutjack         ###   ########.fr       */
+/*   Updated: 2019/08/26 20:36:02 by lcutjack         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
 
 static char *msg[15] = {
+    "; can't allocate memory",
     " doesn't exist or is invalid for some reasons\n",
     " have incorrect extension  [must be \".s\"]\n",
     " can't be created new file\n",

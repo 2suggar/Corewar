@@ -1,5 +1,4 @@
 # hey ladies
 
-.comment    "
-NAME lol
-"
+.comment    
+NAME lol"

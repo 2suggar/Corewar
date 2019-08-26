@@ -6,7 +6,7 @@
 /*   By: lcutjack <lcutjack@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/17 14:12:42 by lcutjack          #+#    #+#             */
-/*   Updated: 2019/08/18 16:49:27 by lcutjack         ###   ########.fr       */
+/*   Updated: 2019/08/26 20:56:09 by lcutjack         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,17 +99,22 @@ static void	read_n_c(int fd, t_out *out)
 	}
 }	
 
-void    cook_raw(int fd, int new, char *fname)
+char    cook_raw(int fd, t_out **out)
 {
-    t_out	*out;
+	t_out	*output;
+	char	err;
 
-	if (!(out = ft_memalloc(sizeof(t_out))))
-		return ;
-	ft_bzero(out, sizeof(t_out));
-	write_magic(out);
-	read_n_c(fd, out);
-	if (out->error)
-		say_error(fname, out->error);
-    read_code(fd, out);
-	new = 0;
+	if (!(output = ft_memalloc(sizeof(t_out))))
+		return (0);
+	ft_bzero(output, sizeof(t_out));
+	write_magic(output);
+	read_n_c(fd, output);
+	if ((err = output->error))
+	{
+		free(output)
+;		return (err);
+	}
+    read_code(fd, output);
+	*out = output;
+	return(0);
 }
