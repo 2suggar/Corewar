@@ -6,20 +6,20 @@
 /*   By: lcutjack <lcutjack@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/18 14:51:12 by lcutjack          #+#    #+#             */
-/*   Updated: 2019/08/18 15:47:52 by lcutjack         ###   ########.fr       */
+/*   Updated: 2019/08/29 15:03:45 by lcutjack         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
 
-int empty(char *s, size_t n)
+int	empty(char *s, size_t n)
 {
-    while (n > 0)
-    {
-        if (*s != '\t' && *s != ' ')
-            return(0);
-        s++;
-        n--;
-    }
-    return (1);
+	while (n > 0)
+	{
+		if (*s != '\t' && *s != ' ')
+			return (0);
+		s++;
+		n--;
+	}
+	return (1);
 }

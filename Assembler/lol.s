@@ -1,4 +1,6 @@
 # hey ladies
 
-.comment    
-NAME lol"
+.name "here"
+.name "double"
+.comment "now"
+.comment "lol"
