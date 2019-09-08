@@ -6,7 +6,7 @@
 /*   By: lcutjack <lcutjack@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/17 14:12:42 by lcutjack          #+#    #+#             */
-/*   Updated: 2019/08/29 14:48:54 by lcutjack         ###   ########.fr       */
+/*   Updated: 2019/09/08 16:13:37 by lcutjack         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,7 +115,7 @@ char		cook_raw(int fd, t_out **out)
 		free(output);
 		return (err);
 	}
-	read_code(fd, output);
+	//read_code(fd, output);
 	write_magic(output);
 	*out = output;
 	return (0);

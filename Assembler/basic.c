@@ -6,7 +6,7 @@
 /*   By: lcutjack <lcutjack@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/18 14:51:12 by lcutjack          #+#    #+#             */
-/*   Updated: 2019/08/29 15:03:45 by lcutjack         ###   ########.fr       */
+/*   Updated: 2019/08/31 15:40:06 by lcutjack         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,4 +22,12 @@ int	empty(char *s, size_t n)
 		n--;
 	}
 	return (1);
+}
+
+void skip_emptyness(char **p)
+{
+	while (**p == ' ' || **p == '\t')
+	{
+		(*p)++;
+	}
 }

@@ -6,7 +6,7 @@
 /*   By: lcutjack <lcutjack@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/26 17:41:30 by lcutjack          #+#    #+#             */
-/*   Updated: 2019/08/29 14:57:00 by lcutjack         ###   ########.fr       */
+/*   Updated: 2019/09/05 14:35:05 by lcutjack         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,19 @@ typedef struct	s_out {
 	char		code_size[4];
 	char		comm[COMMENT_LENGTH];
 	char		com_null[4];
-	char		*code;
+	char		code[CHAMP_MAX_SIZE];
 	char		error;
 	char		c_exist;
 	char		n_exist;
 }				t_out;
+
+typedef struct	s_code
+{
+	char			*command;
+	size_t			*size;
+	struct s_code	*next;
+}				t_code;
+
 
 void			say_error(char *fname, char id);
 
@@ -36,5 +44,6 @@ void			read_code(int fd, t_out *out);
 char			cook_raw(int fd, t_out **out); // вернет код ошибки в случае провала и 0 при успешном декодировании
 
 int				empty(char *s, size_t n);
+void			skip_emptyness(char **p);
 
 #endif

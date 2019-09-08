@@ -6,7 +6,7 @@
 /*   By: lcutjack <lcutjack@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/04 15:20:54 by lcutjack          #+#    #+#             */
-/*   Updated: 2019/08/29 15:05:57 by lcutjack         ###   ########.fr       */
+/*   Updated: 2019/09/08 16:14:34 by lcutjack         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,5 +29,5 @@ void		say_error(char *fname, char id)
 {
 	ft_putstr_fd("The file : ", 2);
 	ft_putstr_fd(fname, 2);
-	ft_putstr_fd(msg[(int)id], 2);
+	ft_putstr_fd(g_msg[(int)id], 2);
 }
