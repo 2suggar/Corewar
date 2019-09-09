@@ -6,7 +6,7 @@
 /*   By: lcutjack <lcutjack@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/26 17:41:30 by lcutjack          #+#    #+#             */
-/*   Updated: 2019/09/05 14:35:05 by lcutjack         ###   ########.fr       */
+/*   Updated: 2019/09/08 19:50:32 by lcutjack         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,10 @@ typedef struct	s_out {
 
 typedef struct	s_code
 {
-	char			*command;
-	size_t			*size;
 	struct s_code	*next;
+	char			*command;
+	char			**marks;
+	int				position;
 }				t_code;
 
 

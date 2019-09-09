@@ -6,7 +6,7 @@
 /*   By: lcutjack <lcutjack@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/18 14:27:58 by lcutjack          #+#    #+#             */
-/*   Updated: 2019/09/08 16:53:47 by lcutjack         ###   ########.fr       */
+/*   Updated: 2019/09/09 18:16:13 by lcutjack         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,18 +16,22 @@
 // {
 // }
 
-// static read_command(char *line)
+// static read_command(int fd)
 // {
+// 	char *line;
+
+// 	line = NULL;
+// 	get_next_line(fd, &line);
 	
 // }
 
 void read_code(int fd, t_out *out)
 {
-	char	*com;
+	//char	*com;
 	t_code	*list;
 
 	list = NULL;
-	com = read_command(fd);
-	add_to_list(com, list);
+	//com = read_command(fd);
+	//add_to_list(com, list);
 	out->error = 0;
 }
