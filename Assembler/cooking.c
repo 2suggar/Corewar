@@ -115,7 +115,7 @@ char		cook_raw(int fd, t_out **out)
 		free(output);
 		return (err);
 	}
-	//read_code(fd, output);
+	read_code(fd, output);
 	write_magic(output);
 	*out = output;
 	return (0);

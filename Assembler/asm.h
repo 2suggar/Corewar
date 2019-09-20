@@ -33,8 +33,9 @@ typedef struct	s_out {
 typedef struct	s_code
 {
 	struct s_code	*next;
-	char			*command;
 	char			**marks;
+	t_op			*command;
+	char			**args;
 	int				position;
 }				t_code;
 
