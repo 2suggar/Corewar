@@ -6,7 +6,7 @@
 /*   By: lcutjack <lcutjack@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/18 14:27:58 by lcutjack          #+#    #+#             */
-/*   Updated: 2019/09/11 17:46:03 by lcutjack         ###   ########.fr       */
+/*   Updated: 2019/09/21 15:43:07 by lcutjack         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,12 +44,14 @@
 
 int		split_tokens(char *line)
 {
+	if (its_command(line))
 	
 }
 
 t_code	*read_str(int fd)
 {
 	char	*line;
+	t_code	*lst;
 
 	while (get_next_line(fd, &line))
 	{
@@ -62,7 +64,7 @@ t_code	*read_str(int fd)
 
 void read_code(int fd, t_out *out)
 {
-	t_code *lst;
+	t_tokens	*read;
 
-	lst = read_str(fd);
+	read = validate(fd);
 }
