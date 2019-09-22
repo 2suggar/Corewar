@@ -6,7 +6,7 @@
 /*   By: lcutjack <lcutjack@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/26 17:41:30 by lcutjack          #+#    #+#             */
-/*   Updated: 2019/09/08 19:50:32 by lcutjack         ###   ########.fr       */
+/*   Updated: 2019/09/22 14:19:35 by lcutjack         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,10 +39,31 @@ typedef struct	s_code
 	int				position;
 }				t_code;
 
+/* validation part */
+
+/* t1/2/3 тип аргумента который соответствует его весу */
+typedef struct	s_t
+{
+	struct s_t	*next;
+	char		*mark;
+	char		com[7];
+	t_op		*command;
+	char		*a1;
+	char		t1;
+	char		*a2;
+	char		t2;
+	char		*a3;
+	char		t3;
+}				t_tokens;
+
+
+
+
 
 void			say_error(char *fname, char id);
 
 void			read_code(int fd, t_out *out);
+t_tokens		*validate(int fd);
 char			cook_raw(int fd, t_out **out); // вернет код ошибки в случае провала и 0 при успешном декодировании
 
 int				empty(char *s, size_t n);
