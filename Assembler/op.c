@@ -6,11 +6,11 @@
 /*   By: lcutjack <lcutjack@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/10/04 11:43:01 by zaz               #+#    #+#             */
-/*   Updated: 2019/09/22 15:34:23 by lcutjack         ###   ########.fr       */
+/*   Updated: 2019/09/23 21:06:07 by lcutjack         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "op.h"
+#include "asm.h"
 
 t_op	g_op_tab[17] =
 {
@@ -38,3 +38,18 @@ t_op	g_op_tab[17] =
 	{"aff", 1, {T_REG}, 16, 2, "aff", 1, 0},
 	{{0}, 0, {0}, 0, 0, {0}, 0, 0}
 };
+
+t_op		*check_command(char *l, size_t pos)
+{
+	int		i;
+
+	i = -1;
+	if (pos > 5)
+		return (NULL);
+	while (++i < 17)
+	{
+		if (!ft_strncmp(l, (char *)&(g_op_tab[i].cmd), pos))
+			return (&g_op_tab[i]);
+	}
+	return (NULL);
+}

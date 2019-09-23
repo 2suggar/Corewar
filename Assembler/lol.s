@@ -1,6 +1,6 @@
 # hey ladies
 
 .name ""
-.comment now"
+.comment "now"
 
 mark:

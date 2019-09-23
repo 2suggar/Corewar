@@ -6,7 +6,7 @@
 /*   By: lcutjack <lcutjack@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/10/04 11:33:27 by zaz               #+#    #+#             */
-/*   Updated: 2019/09/08 16:26:31 by lcutjack         ###   ########.fr       */
+/*   Updated: 2019/09/23 21:28:43 by lcutjack         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 
 #define IND_SIZE				2
 #define REG_SIZE				4
+
 #define DIR_SIZE				REG_SIZE
 
 
@@ -86,3 +87,5 @@ typedef struct		s_op
 	unsigned char	a_typecode;
 	unsigned char	dir_size;
 }					t_op;
+
+extern t_op				g_op_tab[17];
