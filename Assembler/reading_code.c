@@ -6,7 +6,7 @@
 /*   By: lcutjack <lcutjack@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/18 14:27:58 by lcutjack          #+#    #+#             */
-/*   Updated: 2019/09/24 15:47:28 by lcutjack         ###   ########.fr       */
+/*   Updated: 2019/09/24 20:16:59 by lcutjack         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void read_code(int fd, t_out *out)
 	read = validate(fd);
 	while (read)
 	{
-		printf("%s|||\n", (char*)read->command->cmd);
+		printf("%s|||%s\n", (char*)read->command->cmd, read->a1);
 		read = read->next;
 	}
 	out->c_exist = 1;

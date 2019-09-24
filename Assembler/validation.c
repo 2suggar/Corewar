@@ -6,7 +6,7 @@
 /*   By: lcutjack <lcutjack@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/18 19:01:07 by lcutjack          #+#    #+#             */
-/*   Updated: 2019/09/24 15:47:42 by lcutjack         ###   ########.fr       */
+/*   Updated: 2019/09/24 20:14:40 by lcutjack         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,9 +99,9 @@ char			parse_args(char *line, t_tokens *new)
 	new->a3 = args[2];
 	if (n_arg != new->command->arg_q)
 		return (1);
-	if (!(new->types[0] && new->command->arg_type[0]) ||
-		(new->types[1] && new->command->arg_type[1]) ||
-		(new->types[2] && new->command->arg_type[2]))
+	if (!(new->types[0] & new->command->arg_type[0]) ||
+		(!(new->types[1] & new->command->arg_type[1]) && n_arg > 1) ||
+		(!(new->types[2] & new->command->arg_type[2]) && n_arg > 2))
 		return (1);
 	return (0);
 }
@@ -113,7 +113,7 @@ static t_tokens	*check_line(char *line)
 	char		feedback;
 
 	skip_emptyness(&line);
-	if (*line == COMMENT_CHAR)
+	if (*line == COMMENT_CHAR || !*line)
 		return (NULL);
 	new = ft_memalloc(sizeof(t_tokens));
 	if (!(feedback = find_sep(line, &pos)) || feedback == 3)
