@@ -6,7 +6,7 @@
 /*   By: lcutjack <lcutjack@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/18 19:01:07 by lcutjack          #+#    #+#             */
-/*   Updated: 2019/09/24 15:06:17 by lcutjack         ###   ########.fr       */
+/*   Updated: 2019/09/24 15:47:42 by lcutjack         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -145,10 +145,8 @@ t_tokens	*validate(int fd)
     {
 		if ((new = check_line(line)))
 		{
-			printf("%s", line);
 			if (!toks)
 			{
-				printf("IMHERE and %p\n", new);
 				toks = new;
 				curr = toks;
 			}
@@ -158,8 +156,7 @@ t_tokens	*validate(int fd)
 				curr = curr->next;
 			}
 		}
-		/*printf("%s|||%s|||%s|||%s\n", new->a1, new->a2, new->a3);*/
 	}
-		printf("%p\n", toks);
+	curr->next = NULL;
 	return (toks);
 }
