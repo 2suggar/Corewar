@@ -6,7 +6,7 @@
 /*   By: lcutjack <lcutjack@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/26 17:41:30 by lcutjack          #+#    #+#             */
-/*   Updated: 2019/09/23 20:30:26 by lcutjack         ###   ########.fr       */
+/*   Updated: 2019/09/24 14:54:27 by lcutjack         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ typedef struct	s_code
 
 /* validation part */
 
-/* t1/2/3 тип аргумента который соответствует его весу */
+/* types[0/1/2] тип аргумента который соответствует его коду */
 typedef struct	s_t
 {
 	struct s_t	*next;
@@ -50,11 +50,9 @@ typedef struct	s_t
 	t_op		*command;
 	/*char		n_args;*/
 	char		*a1;
-	char		t1;
+	char		types[3];
 	char		*a2;
-	char		t2;
 	char		*a3;
-	char		t3;
 }				t_tokens;
 
 

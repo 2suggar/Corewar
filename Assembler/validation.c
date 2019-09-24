@@ -6,7 +6,7 @@
 /*   By: lcutjack <lcutjack@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/18 19:01:07 by lcutjack          #+#    #+#             */
-/*   Updated: 2019/09/23 21:33:01 by lcutjack         ###   ########.fr       */
+/*   Updated: 2019/09/24 15:06:17 by lcutjack         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ static char		find_sep(char *l, size_t *p)
 			return (1);
 		return (0);
 	}
-	if (l[*p] == DIRECT_CHAR || l[*p] == ' ')
+	if (l[*p] == DIRECT_CHAR || l[*p] == ' ' || l[*p] == '\t')
 		return (2);
 	if (l[*p] == SEPARATOR_CHAR)
 		return (3);
@@ -43,20 +43,40 @@ static char		find_sep(char *l, size_t *p)
 
 /* 1- метка 2- команда 3- аргумент 0- конец строки или коммент */
 
-static char		check_arg(char **arg)
+static char		check_arg(char **arg, char *type)
 {
 	char	*new;
+	char	*tmp;
 
 	new = ft_strtrim(*arg);
 	free(*arg);
+	if (*new == DIRECT_CHAR && (*type = DIR_CODE))
+	{
+		tmp = ft_strdup(new + 1);
+		free(new);
+		new = tmp;
+	}
+	else if (*new == 'r' && ft_is_ok(new + 1, ft_isdigit))
+	{
+		tmp = ft_strdup(new + 1);
+		free(new);
+		new = tmp;
+		*type = REG_CODE;
+	}
+	else
+		*type = IND_CODE;
 	if (*new == LABEL_CHAR)
 	{
-		if (label_correct(new + 1))
-			return (0);
+		tmp = ft_strdup(new + 1);
+		free(new);
+		new = tmp;
+		if (!label_correct(new))
+			return (1);
 	}
-	else if (!ft_strcmp(ft_itoa(ft_atoi(new)), new))
-		return (0);
-	return (1);
+	else if (ft_strcmp(ft_itoa(ft_atoi(new)), new))
+		return (1);
+	*arg = new;
+	return (0);
 }
 
 char			parse_args(char *line, t_tokens *new)
@@ -70,7 +90,7 @@ char			parse_args(char *line, t_tokens *new)
 	{
 		if (n_arg > 3)
 			return (1);
-		if (check_arg(&args[n_arg]))
+		if (check_arg(&args[n_arg], &new->types[n_arg]))
 			return (1);
 		n_arg++;
 	}
@@ -79,9 +99,9 @@ char			parse_args(char *line, t_tokens *new)
 	new->a3 = args[2];
 	if (n_arg != new->command->arg_q)
 		return (1);
-	if (!(new->t1 && new->command->arg_type[0]) ||
-		(new->t2 && new->command->arg_type[1]) ||
-		(new->t3 && new->command->arg_type[2]))
+	if (!(new->types[0] && new->command->arg_type[0]) ||
+		(new->types[1] && new->command->arg_type[1]) ||
+		(new->types[2] && new->command->arg_type[2]))
 		return (1);
 	return (0);
 }
@@ -106,8 +126,9 @@ static t_tokens	*check_line(char *line)
 		if ((feedback = find_sep(line, &pos)) != 2)
 			return (NULL);
 	}
-	new->command = check_command(line, pos);
-	if (parse_args(line, new))
+	if (!(new->command = check_command(line, pos)))
+		return (NULL);
+	if (parse_args(line + pos + 1, new))
 		return (NULL);
 	return (new);
 }
@@ -122,20 +143,23 @@ t_tokens	*validate(int fd)
 	toks = NULL;
     while (get_next_line(fd, &line))
     {
-		new = check_line(line);
-		// if (!(new = check_line(line)))
-		// 	return (NULL);
-		if (!toks)
+		if ((new = check_line(line)))
 		{
-			toks = new;
-			curr = toks;
+			printf("%s", line);
+			if (!toks)
+			{
+				printf("IMHERE and %p\n", new);
+				toks = new;
+				curr = toks;
+			}
+			else
+			{
+				curr->next = new;
+				curr = curr->next;
+			}
 		}
-		else
-		{
-			curr->next = new;
-			curr = curr->next;
-		}
-		printf("%s|||%s|||%s|||%s\n", new->a1, new->a2, new->a3);
+		/*printf("%s|||%s|||%s|||%s\n", new->a1, new->a2, new->a3);*/
 	}
+		printf("%p\n", toks);
 	return (toks);
 }
