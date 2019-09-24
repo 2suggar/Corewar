@@ -6,7 +6,7 @@
 #    By: lcutjack <lcutjack@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/07/19 16:35:27 by lcutjack          #+#    #+#              #
-#    Updated: 2019/09/24 16:46:50 by lcutjack         ###   ########.fr        #
+#    Updated: 2019/09/24 18:39:44 by lcutjack         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,20 +21,30 @@ SRC = main.c error_msg.c cooking.c reading_code.c basic.c op.c validation.c
 OBJ_DIR = obj/
 OBJ = $(patsubst %.c,%.o,$(SRC))
 
+OB = $(SRC:.c=.o)
 
 all: $(NAME)
 
-$(OBJ_DIR)%.o: %.c
-	@mkdir -p $(OBJ_DIR)
-	@gcc $(FLAGS) -c $< -o $@ $(INC)
+# $(OBJ_DIR)%.o: %.c
+# 	@mkdir -p $(OBJ_DIR)
+# 	@gcc $(FLAGS) -c $< -o $@ $(INC)
 
-$(NAME): $(addprefix $(OBJ_DIR),$(OBJ))
-	gcc $(FLAGS) $(addprefix $(OBJ_DIR), $(OBJ)) $(LIB) $(INC) -o $(NAME)
+# $(NAME): $(addprefix $(OBJ_DIR),$(OBJ))
+# 	gcc $(FLAGS) $(addprefix $(OBJ_DIR), $(OBJ)) $(LIB) $(INC) -o $(NAME)
 
-clean:
-	rm -rf obj
+# clean:
+# 	rm -rf obj
 
-fclean: clean
-	rm -rf $(NAME)
+# fclean: clean
+# 	rm -rf $(NAME)
 	
-re: fclean all
+# re: fclean all
+
+# for DEBUG | down below
+
+
+$(NAME): $(OB)
+	gcc -g $(FLAGS) $(OB) $(INC) -o $(NAME) $(LIB)
+
+fclean:
+	rm -rf $(NAME) *.o
