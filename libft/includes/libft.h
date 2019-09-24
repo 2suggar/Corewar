@@ -6,7 +6,7 @@
 /*   By: lcutjack <lcutjack@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/29 16:09:52 by gdamion-          #+#    #+#             */
-/*   Updated: 2019/07/26 22:05:00 by lcutjack         ###   ########.fr       */
+/*   Updated: 2019/09/24 16:22:36 by lcutjack         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,12 +49,15 @@ char				*ft_strnstr(const char *haystack, const char *needle, \
 int					ft_strcmp(const char *s1, const char *s2);
 int					ft_strncmp(const char *s1, const char *s2, size_t n);
 int					ft_atoi(const char *s);
+
 int					ft_isalpha(int c);
 int					ft_isdigit(int c);
 int					ft_isalnum(int c);
 int					ft_isascii(int c);
 int					ft_isprint(int c);
+int					ft_isspace(int c);
 int					ft_is_ok(char *s, int (*f)(int));
+
 int					ft_toupper(int c);
 int					ft_tolower(int c);
 void				ft_str_tup(char *b);

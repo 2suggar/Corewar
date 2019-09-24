@@ -6,7 +6,7 @@
 #    By: lcutjack <lcutjack@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/29 14:13:15 by gdamion-          #+#    #+#              #
-#    Updated: 2019/08/04 12:26:04 by lcutjack         ###   ########.fr        #
+#    Updated: 2019/09/24 16:22:50 by lcutjack         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,7 +26,7 @@ SRC =	ft_memset.c ft_bzero.c ft_memcpy.c ft_memccpy.c ft_memmove.c ft_memchr.c \
 		ft_lstnew.c ft_lstdelone.c ft_lstdel.c ft_lstadd.c ft_lstiter.c \
 		ft_lstmap.c ft_lstadd_into.c ft_lstsize.c ft_replace.c ft_rejoin.c \
 		ft_lstcpy.c ft_del.c ft_itoa_base.c ft_itoa_base_pos.c ft_str_tup.c \
-		ft_is_ok.c
+		ft_is_ok.c ft_isspace.c
 
 SRC_DIR = src/
 

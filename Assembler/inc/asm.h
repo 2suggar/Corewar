@@ -6,7 +6,7 @@
 /*   By: lcutjack <lcutjack@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/26 17:41:30 by lcutjack          #+#    #+#             */
-/*   Updated: 2019/09/24 14:54:27 by lcutjack         ###   ########.fr       */
+/*   Updated: 2019/09/24 16:15:11 by lcutjack         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,9 +46,7 @@ typedef struct	s_t
 {
 	struct s_t	*next;
 	char		*mark;
-	/*char		com[7];*/
 	t_op		*command;
-	/*char		n_args;*/
 	char		*a1;
 	char		types[3];
 	char		*a2;

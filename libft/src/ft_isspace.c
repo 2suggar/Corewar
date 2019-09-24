@@ -1,33 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   basic.c                                            :+:      :+:    :+:   */
+/*   ft_isspace.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lcutjack <lcutjack@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/08/18 14:51:12 by lcutjack          #+#    #+#             */
-/*   Updated: 2019/09/24 16:15:11 by lcutjack         ###   ########.fr       */
+/*   Created: 2019/09/24 16:19:53 by lcutjack          #+#    #+#             */
+/*   Updated: 2019/09/24 16:22:08 by lcutjack         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "asm.h"
+#include "libft.h"
 
-int	empty(char *s, size_t n)
+int	ft_isspace(int c)
 {
-	while (n > 0)
-	{
-		if (*s != '\t' && *s != ' ')
-			return (0);
-		s++;
-		n--;
-	}
-	return (1);
-}
-
-void skip_emptyness(char **p)
-{
-	while (**p == ' ' || **p == '\t')
-	{
-		(*p)++;
-	}
+	if (c == ' ' || c == '\t')
+		return (1);
+	return (0);
 }
