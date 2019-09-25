@@ -6,7 +6,7 @@
 /*   By: lcutjack <lcutjack@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/18 14:27:58 by lcutjack          #+#    #+#             */
-/*   Updated: 2019/09/25 15:56:06 by lcutjack         ###   ########.fr       */
+/*   Updated: 2019/09/25 16:04:52 by lcutjack         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@ static void	show_tokens(t_tokens *me)
 				printf("ARG2/TYPE: \033[32m|%s|%d|\033[0m ", me->a2, (int)me->types[1]);
 			if (me->a3)
 				printf("ARG3/TYPE: \033[32m|%s|%d|\033[0m ", me->a3, (int)me->types[2]);
+			printf("\n");
 		}
-		printf("\n");
 		me = me->next;
 	}
 }

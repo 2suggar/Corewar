@@ -6,7 +6,7 @@
 /*   By: lcutjack <lcutjack@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/18 19:01:07 by lcutjack          #+#    #+#             */
-/*   Updated: 2019/09/25 15:54:06 by lcutjack         ###   ########.fr       */
+/*   Updated: 2019/09/25 17:34:24 by lcutjack         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,7 +123,9 @@ static t_tokens	*check_line(char *line)
 		new->mark = line;
 		line += pos + 1;
 		skip_emptyness(&line);
-		if ((feedback = find_sep(line, &pos)) != 2)
+		if ((feedback = find_sep(line, &pos)) == 0)
+			return (new);
+		else if (feedback != 2)
 			return (NULL);
 	}
 	if (!(new->command = check_command(line, pos)))

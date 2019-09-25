@@ -6,7 +6,7 @@
 /*   By: lcutjack <lcutjack@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/26 17:41:30 by lcutjack          #+#    #+#             */
-/*   Updated: 2019/09/25 14:48:20 by lcutjack         ###   ########.fr       */
+/*   Updated: 2019/09/25 17:37:17 by lcutjack         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,16 +30,16 @@ typedef struct	s_out {
 	char		n_exist;
 }				t_out;
 
-typedef struct	s_code
-{
-	struct s_code	*next;
-	char			**marks;
-	t_op			*command;
-	char			**args;
-	int				position;
-}				t_code;
-
 /* validation part */
+
+typedef struct	s_error
+{
+	char		*filename;
+	char		id;
+	char		*str_er;
+}				t_error;
+
+extern t_error			g_error;
 
 /* types[0/1/2] тип аргумента который соответствует его коду */
 typedef struct	s_t

@@ -6,7 +6,7 @@
 /*   By: lcutjack <lcutjack@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/04 15:20:54 by lcutjack          #+#    #+#             */
-/*   Updated: 2019/09/22 14:48:23 by lcutjack         ###   ########.fr       */
+/*   Updated: 2019/09/25 17:36:24 by lcutjack         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ static char	*g_msg[15] = {
 	"\033[0;32m; no comment\n\033[0m"
 	"\033[0;32m can't be created new file\n\033[0m",
 };
+
+t_error		g_error = {NULL, 0, NULL};
 
 void		say_error(char *fname, char id)
 {
