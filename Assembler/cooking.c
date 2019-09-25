@@ -6,7 +6,7 @@
 /*   By: lcutjack <lcutjack@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/17 14:12:42 by lcutjack          #+#    #+#             */
-/*   Updated: 2019/09/08 16:13:37 by lcutjack         ###   ########.fr       */
+/*   Updated: 2019/09/25 19:39:47 by lcutjack         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ static void	read_name(int fd, t_out *out, char *line)
 	char	*end;
 
 	if ((!(start = ft_strchr(line, '"')) || !empty(line, start - line))
-		&& (out->error = 3))
+		&& (g_error.id = 3))
 		return ;
 	if ((end = ft_strchr(start + 1, '"')))
 		ft_strncpy(out->name, start + 1, end - start - 1);
@@ -54,7 +54,7 @@ static void	read_comment(int fd, t_out *out, char *line)
 	char	*end;
 
 	if ((!(start = ft_strchr(line, '"')) || !empty(line, start - line))
-		&& (out->error = 4))
+		&& (g_error.id = 4))
 		return ;
 	if ((end = ft_strchr(start + 1, '"')))
 		ft_strncpy(out->comm, start + 1, end - start - 1);
@@ -85,38 +85,36 @@ static void	read_n_c(int fd, t_out *out)
 			ft_memdel((void**)&line);
 		if (!ft_strncmp(COMMENT_CMD_STRING, line, c_len))
 		{
-			if (out->c_exist && (out->error = 6))
+			if (out->c_exist && (g_error.id = 6))
 				break ;
 			read_comment(fd, out, line + c_len);
 		}
 		else if (!ft_strncmp(NAME_CMD_STRING, line, n_len))
 		{
-			if (out->n_exist && (out->error = 5))
+			if (out->n_exist && (g_error.id = 5))
 				break ;
 			read_name(fd, out, line + n_len);
 		}
 		ft_memdel((void**)&line);
-		if (out->error)
+		if (g_error.id)
 			return ;
 	}
 }
 
-char		cook_raw(int fd, t_out **out)
+void		cook_raw(int fd, t_out **out)
 {
 	t_out	*output;
-	char	err;
 
 	if (!(output = ft_memalloc(sizeof(t_out))))
-		return (0);
-	ft_bzero(output, sizeof(t_out));
+		return ;
+	// ft_bzero(output, sizeof(t_out));
 	read_n_c(fd, output);
-	if ((err = output->error))
+	if (g_error.id)
 	{
 		free(output);
-		return (err);
+		return ;
 	}
 	read_code(fd, output);
 	write_magic(output);
 	*out = output;
-	return (0);
 }

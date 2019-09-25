@@ -6,7 +6,7 @@
 /*   By: lcutjack <lcutjack@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/26 17:41:30 by lcutjack          #+#    #+#             */
-/*   Updated: 2019/09/25 17:37:17 by lcutjack         ###   ########.fr       */
+/*   Updated: 2019/09/25 19:11:37 by lcutjack         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ typedef struct	s_out {
 	char		comm[COMMENT_LENGTH];
 	char		com_null[4];
 	char		code[CHAMP_MAX_SIZE];
-	char		error;
 	char		c_exist;
 	char		n_exist;
 }				t_out;
@@ -35,7 +34,7 @@ typedef struct	s_out {
 typedef struct	s_error
 {
 	char		*filename;
-	char		id;
+	int			id;
 	char		*str_er;
 }				t_error;
 
@@ -54,11 +53,11 @@ typedef struct	s_t
 }				t_tokens;
 
 
-void			say_error(char *fname, char id);
+void			say_error(void);
 
 void			read_code(int fd, t_out *out);
 t_tokens		*validate(int fd);
-char			cook_raw(int fd, t_out **out); // вернет код ошибки в случае провала и 0 при успешном декодировании
+void			cook_raw(int fd, t_out **out); // вернет код ошибки в случае провала и 0 при успешном декодировании
 
 int				empty(char *s, size_t n);
 void			skip_emptyness(char **p);

@@ -1,6 +1,6 @@
 # hey ladies
 
-.name "zork"
+.nameo "zork"
 .comment "I'M ALIIIIVE"
 
 l2:

@@ -6,7 +6,7 @@
 /*   By: lcutjack <lcutjack@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/26 17:34:26 by lcutjack          #+#    #+#             */
-/*   Updated: 2019/09/25 17:36:38 by lcutjack         ###   ########.fr       */
+/*   Updated: 2019/09/25 19:07:19 by lcutjack         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,22 +27,22 @@ int			main(int ac, char **av)
 	int		fd;
 	char	*fname;
 	t_out	*out;
-	char	id_error;
 
 	while (--ac)
 	{
+		g_error.filename = *av;
 		if ((fd = open(*(++av), O_RDONLY)) < 3)
-			say_error(*av, 1);
+			g_error.id = 1;
 		else
 		{
 			if (!(fname = correct_name(*av)))
-				say_error(*av, 2);
-			else if ((id_error = cook_raw(fd, &out)))
-				say_error(*av, id_error);
+				g_error.id = 2;
 			else
-				break ;
+				cook_raw(fd, &out);
 			close(fd);
 		}
+		if (g_error.id)
+			say_error();
 	}
 	return (0);
 }
