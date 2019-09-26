@@ -6,7 +6,7 @@
 /*   By: lcutjack <lcutjack@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/18 14:27:58 by lcutjack          #+#    #+#             */
-/*   Updated: 2019/09/26 15:00:36 by lcutjack         ###   ########.fr       */
+/*   Updated: 2019/09/26 22:57:53 by lcutjack         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,11 +29,40 @@ static void	show_tokens(t_tokens *me)
 	}
 }
 
-void read_code(int fd, t_out *out)
+static size_t	weight(t_tokens *me)
+{
+	
+}
+
+static void fill_size(t_tokens *read)
+{
+	size_t	n;
+	t_mark	*mark;
+	t_mark	*start;
+
+	n = 0;
+	mark = NULL;
+	while (read)
+	{
+		if (read->mark)
+		{
+			start = ft_memalloc(sizeof(t_mark));
+			start->next = mark;
+			start->mark = read->mark;
+			start->size = n;
+			mark = start;
+		}
+		n += weight(read);
+		
+	}
+}
+
+void		read_code(int fd, t_out *out)
 {
 	t_tokens	*read;
 
 	read = validate(fd);
+	fill_size(read);
 	show_tokens(read);
 	out->c_exist = 1;
 }

@@ -6,7 +6,7 @@
 /*   By: lcutjack <lcutjack@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/10/04 11:43:01 by zaz               #+#    #+#             */
-/*   Updated: 2019/09/23 21:06:07 by lcutjack         ###   ########.fr       */
+/*   Updated: 2019/09/26 16:30:06 by lcutjack         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ t_op		*check_command(char *l, size_t pos)
 	int		i;
 
 	i = -1;
-	if (pos > 5)
+	if (pos > 5 && (g_error.id = 14))
 		return (NULL);
 	while (++i < 17)
 	{

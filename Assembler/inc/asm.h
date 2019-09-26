@@ -6,7 +6,7 @@
 /*   By: lcutjack <lcutjack@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/26 17:41:30 by lcutjack          #+#    #+#             */
-/*   Updated: 2019/09/26 14:48:53 by lcutjack         ###   ########.fr       */
+/*   Updated: 2019/09/26 23:14:31 by lcutjack         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,14 @@ typedef struct	s_t
 	char		*a2;
 	char		*a3;
 }				t_tokens;
+
+typedef	struct	s_m
+{
+	struct s_m	*next;
+	char		*mark;
+	size_t		size;
+}				t_mark;
+
 
 
 void			say_error(void);
