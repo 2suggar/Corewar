@@ -6,7 +6,7 @@
 /*   By: lcutjack <lcutjack@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/26 17:41:30 by lcutjack          #+#    #+#             */
-/*   Updated: 2019/09/25 19:11:37 by lcutjack         ###   ########.fr       */
+/*   Updated: 2019/09/26 14:48:53 by lcutjack         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ typedef struct	s_t
 	char		*mark;
 	t_op		*command;
 	char		types[3];
+	int			values[3];
 	char		*a1;
 	char		*a2;
 	char		*a3;

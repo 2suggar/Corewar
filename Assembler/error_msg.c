@@ -6,7 +6,7 @@
 /*   By: lcutjack <lcutjack@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/04 15:20:54 by lcutjack          #+#    #+#             */
-/*   Updated: 2019/09/25 18:59:28 by lcutjack         ###   ########.fr       */
+/*   Updated: 2019/09/26 16:27:19 by lcutjack         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,12 @@ static char	*g_msg[15] = {
 	"\033[0;32m; double name\n\033[0m",
 	"\033[0;32m; double comment\n\033[0m",
 	"\033[0;32m; no name\n\033[0m",
-	"\033[0;32m; no comment\n\033[0m"
+	"\033[0;32m; no comment\n\033[0m",
 	"\033[0;32m can't be created new file\n\033[0m",
+	"\033[0;32m incorrect command:\n\033[0m",
+	"\033[0;32m incorrect argument:\n\033[0m",
+	"\033[0;32m incorrect number of arguments\n\033[0m",
+	"\033[0;32m incorrect command\n\033[0m"
 };
 
 t_error		g_error = {NULL, 0, NULL};

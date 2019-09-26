@@ -6,7 +6,7 @@
 /*   By: lcutjack <lcutjack@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/17 14:12:42 by lcutjack          #+#    #+#             */
-/*   Updated: 2019/09/25 19:39:47 by lcutjack         ###   ########.fr       */
+/*   Updated: 2019/09/26 15:45:14 by lcutjack         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,6 +112,7 @@ void		cook_raw(int fd, t_out **out)
 	if (g_error.id)
 	{
 		free(output);
+		say_error();
 		return ;
 	}
 	read_code(fd, output);

@@ -6,7 +6,7 @@
 /*   By: lcutjack <lcutjack@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/18 19:01:07 by lcutjack          #+#    #+#             */
-/*   Updated: 2019/09/25 17:34:24 by lcutjack         ###   ########.fr       */
+/*   Updated: 2019/09/26 16:23:51 by lcutjack         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ static char		find_sep(char *l, size_t *p)
 
 /* 1- метка 2- команда 3- аргумент 0- конец строки или коммент */
 
-static char		check_arg(char **arg, char *type)
+static char		check_arg(char **arg, char *type, int *value)
 {
 	char	*new;
 	char	*tmp;
@@ -70,11 +70,17 @@ static char		check_arg(char **arg, char *type)
 		tmp = ft_strdup(new + 1);
 		free(new);
 		new = tmp;
-		if (!label_correct(new))
+		if (!label_correct(new) && (g_error.id = 11))
 			return (1);
 	}
-	else if (ft_strcmp(ft_itoa(ft_atoi(new)), new))
-		return (1);
+	else
+	{
+		*value = ft_atoi(new);
+		tmp = ft_itoa(ft_atoi(new));
+		if (ft_strcmp(tmp, new) && (g_error.id = 12))
+			return (1);
+		new = NULL;
+	}
 	*arg = new;
 	return (0);
 }
@@ -90,7 +96,7 @@ char			parse_args(char *line, t_tokens *new)
 	{
 		if (n_arg > 3)
 			return (1);
-		if (check_arg(&args[n_arg], &new->types[n_arg]))
+		if (check_arg(&args[n_arg], &new->types[n_arg], &new->values[n_arg]))
 			return (1);
 		n_arg++;
 	}
@@ -116,7 +122,7 @@ static t_tokens	*check_line(char *line)
 	if (*line == COMMENT_CHAR || !*line)
 		return (NULL);
 	new = ft_memalloc(sizeof(t_tokens));
-	if (!(feedback = find_sep(line, &pos)) || feedback == 3)
+	if ((!(feedback = find_sep(line, &pos)) || feedback == 3) && (g_error.id = 10))
 		return (NULL);
 	if (feedback == 1)
 	{
@@ -158,6 +164,8 @@ t_tokens	*validate(int fd)
 				curr = curr->next;
 			}
 		}
+		if (g_error.id)
+			return (NULL);
 	}
 	curr->next = NULL;
 	return (toks);

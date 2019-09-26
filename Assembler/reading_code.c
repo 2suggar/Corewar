@@ -6,7 +6,7 @@
 /*   By: lcutjack <lcutjack@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/18 14:27:58 by lcutjack          #+#    #+#             */
-/*   Updated: 2019/09/25 16:04:52 by lcutjack         ###   ########.fr       */
+/*   Updated: 2019/09/26 15:00:36 by lcutjack         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,9 @@ static void	show_tokens(t_tokens *me)
 			printf("\033[34mMARK:\033[32m|%s|\033[0m \n", me->mark);
 		if (me->command)
 		{
-			printf("COM: \033[32m|%s|\033[0m ARG1/TYPE: \033[32m|%s|%d|\033[0m ", (char*)me->command->cmd, me->a1, (int)me->types[0]);
-			if (me->a2)
-				printf("ARG2/TYPE: \033[32m|%s|%d|\033[0m ", me->a2, (int)me->types[1]);
-			if (me->a3)
-				printf("ARG3/TYPE: \033[32m|%s|%d|\033[0m ", me->a3, (int)me->types[2]);
+			printf("COM: \033[32m|%s|\033[0m ARG1/TYPE/VALUE: \033[32m|%s|%d|%d|\033[0m ", (char*)me->command->cmd, me->a1, (int)me->types[0], me->values[0]);
+			printf("ARG2/TYPE/VALUE: \033[32m|%s|%d|%d|\033[0m ", me->a2, (int)me->types[1], me->values[1]);
+			printf("ARG3/TYPE/VALUE: \033[32m|%s|%d|%d|\033[0m ", me->a3, (int)me->types[2], me->values[2]);
 			printf("\n");
 		}
 		me = me->next;
