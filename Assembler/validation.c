@@ -6,7 +6,7 @@
 /*   By: lcutjack <lcutjack@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/18 19:01:07 by lcutjack          #+#    #+#             */
-/*   Updated: 2019/09/26 20:09:21 by lcutjack         ###   ########.fr       */
+/*   Updated: 2019/09/27 13:44:29 by lcutjack         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ static char		check_arg(char **arg, char *type, int *value)
 
 	new = ft_strtrim(*arg);
 	free(*arg);
-	if (*new == DIRECT_CHAR && (*type = DIR_CODE))
+	if (*new == DIRECT_CHAR && (*type = T_DIR))
 	{
 		tmp = ft_strdup(new + 1);
 		free(new);
@@ -60,10 +60,10 @@ static char		check_arg(char **arg, char *type, int *value)
 		tmp = ft_strdup(new + 1);
 		free(new);
 		new = tmp;
-		*type = REG_CODE;
+		*type = T_REG;
 	}
 	else
-		*type = IND_CODE;
+		*type = T_IND;
 	if (*new == LABEL_CHAR)
 	{
 		tmp = ft_strdup(new + 1);

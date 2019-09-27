@@ -6,7 +6,7 @@
 /*   By: lcutjack <lcutjack@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/26 17:41:30 by lcutjack          #+#    #+#             */
-/*   Updated: 2019/09/26 23:14:31 by lcutjack         ###   ########.fr       */
+/*   Updated: 2019/09/27 15:50:57 by lcutjack         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ typedef struct	s_error
 
 extern t_error			g_error;
 
-/* types[0/1/2] тип аргумента который соответствует его коду */
+/* types[0/1/2] тип аргумента который соответствует весу (T_*) */
 typedef struct	s_t
 {
 	struct s_t	*next;
