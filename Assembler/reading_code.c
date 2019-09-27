@@ -6,7 +6,7 @@
 /*   By: lcutjack <lcutjack@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/18 14:27:58 by lcutjack          #+#    #+#             */
-/*   Updated: 2019/09/27 18:35:02 by lcutjack         ###   ########.fr       */
+/*   Updated: 2019/09/27 21:37:56 by lcutjack         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,6 @@ static void replace_marks(t_tokens *read, t_mark *mark)
 			n += weight(read);
 		else
 		{
-			n += 1;
 			if (read->a1)
 				read->values[0] = calc_mark(read->a1, n, mark);
 			if (read->a2)
@@ -113,6 +112,31 @@ static void replace_marks(t_tokens *read, t_mark *mark)
 		}
 		read = read->next;
 	}
+}
+
+static t_tokens *delete_empty(t_tokens *read)
+{
+	t_tokens	*tmp;
+	t_tokens	*new;
+
+	new = read;
+	while (read->next)
+	{
+		if (!read->next->command)
+		{
+			tmp = read->next;
+			read->next = read->next->next;
+			free(tmp);
+		}
+		read = read->next;
+	}
+	if (!new->command)
+	{
+		tmp = new->next;
+		free(new);
+		return (tmp);
+	}
+	return (read);
 }
 
 void		read_code(int fd, t_out *out)
@@ -127,6 +151,7 @@ void		read_code(int fd, t_out *out)
 	// 	printf("|||%s|||%lu|||\n", mark->mark, mark->size);
 	// 	mark = mark->next;
 	// }
+	read = delete_empty(read);
 	replace_marks(read, mark);
 	show_tokens(read);
 	out->c_exist = 1;
