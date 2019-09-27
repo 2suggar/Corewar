@@ -6,7 +6,7 @@
 /*   By: lcutjack <lcutjack@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/18 14:27:58 by lcutjack          #+#    #+#             */
-/*   Updated: 2019/09/26 22:57:53 by lcutjack         ###   ########.fr       */
+/*   Updated: 2019/09/27 13:23:41 by lcutjack         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,10 @@ static void	show_tokens(t_tokens *me)
 	}
 }
 
-static size_t	weight(t_tokens *me)
-{
+// static size_t	weight(t_tokens *me)
+// {
 	
-}
+// }
 
 static void fill_size(t_tokens *read)
 {
@@ -52,7 +52,7 @@ static void fill_size(t_tokens *read)
 			start->size = n;
 			mark = start;
 		}
-		n += weight(read);
+		// n += weight(read);
 		
 	}
 }
