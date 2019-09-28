@@ -6,7 +6,7 @@
 /*   By: lcutjack <lcutjack@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/18 14:27:58 by lcutjack          #+#    #+#             */
-/*   Updated: 2019/09/28 13:00:22 by lcutjack         ###   ########.fr       */
+/*   Updated: 2019/09/28 20:45:02 by lcutjack         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ static void	show_tokens(t_tokens *me)
 			printf("ARG3/TYPE/VALUE: \033[32m|%6s|%d|%3d|\033[0m ", me->a3, (int)me->types[2], me->values[2]);
 			printf("\n");
 		}
+		else
+			printf("\033[31mI AM EMPTY\n\033[0m");
 		me = me->next;
 	}
 }
@@ -149,7 +151,7 @@ void		read_code(int fd, t_out *out)
 	// while (mark)
 	// {
 	// 	printf("|||%s|||%lu|||\n", mark->mark, mark->size);
-	// 	mark = mark->next;
+	// 	mark = mark->next; 
 	// }
 	read = delete_empty(read);
 	replace_marks(read, mark);
