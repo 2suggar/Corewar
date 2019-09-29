@@ -6,7 +6,7 @@
 /*   By: lcutjack <lcutjack@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/18 14:27:58 by lcutjack          #+#    #+#             */
-/*   Updated: 2019/09/29 14:16:19 by lcutjack         ###   ########.fr       */
+/*   Updated: 2019/09/29 15:15:17 by lcutjack         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ static t_mark *fill_mark(t_tokens *read)
 	mark = NULL;
 	while (read)
 	{
-		if (read->mark)
+		if (read->mark && label_correct(read->mark))
 		{
 			start = ft_memalloc(sizeof(t_mark));
 			start->next = mark;
@@ -65,6 +65,8 @@ static t_mark *fill_mark(t_tokens *read)
 			start->size = n;
 			mark = start;
 		}
+		else if (read->mark && (g_error.id = 15) && (g_error.str_er = read->mark))
+			return (NULL);
 		n += weight(read);
 		read = read->next;
 	}
@@ -109,11 +111,15 @@ static void replace_marks(t_tokens *read, t_mark *mark)
 			if (read->a2)
 				read->values[1] = calc_mark(read->a2, n, mark);
 			if (read->a3)
-				read->values[2] = calc_mark(read->a3, n, mark);	
+				read->values[2] = calc_mark(read->a3, n, mark);
+			read->a1 = NULL;
+			read->a2 = NULL;
+			read->a3 = NULL;
 			n += weight(read);
 		}
 		read = read->next;
 	}
+	del_marks(mark);
 }
 
 static t_tokens *delete_empty(t_tokens *read)
@@ -141,13 +147,14 @@ static t_tokens *delete_empty(t_tokens *read)
 	return (read);
 }
 
-void		read_code(int fd, t_out *out)
+int		read_code(int fd, t_out *out)
 {
 	t_tokens	*read;
 	t_mark		*mark;
 
 	read = validate(fd);
-	mark = fill_mark(read);
+	if (!(mark = fill_mark(read)))
+		return (1);
 	// while (mark)
 	// {
 	// 	printf("|||%s|||%lu|||\n", mark->mark, mark->size);
@@ -157,4 +164,6 @@ void		read_code(int fd, t_out *out)
 	replace_marks(read, mark);
 	show_tokens(read);
 	out->c_exist = 1;
+	del_tokens(read);
+	return (0);
 }

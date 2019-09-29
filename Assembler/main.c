@@ -6,7 +6,7 @@
 /*   By: lcutjack <lcutjack@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/26 17:34:26 by lcutjack          #+#    #+#             */
-/*   Updated: 2019/09/26 13:03:20 by lcutjack         ###   ########.fr       */
+/*   Updated: 2019/09/29 15:27:36 by lcutjack         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,16 @@
 static char	*correct_name(char *name)
 {
 	char *p;
+	char *tmp;
+	char *new;
 
 	p = ft_strstr(name, ".s");
 	if (!p || *(p + 2))
 		return (NULL);
-	return (ft_strjoin(ft_strsub(name, 0, p - name), ".cor"));
+	tmp = ft_strsub(name, 0, p - name);
+	new = ft_strjoin(tmp, ".cor");
+	free(tmp);
+	return (new);
 }
 
 int			main(int ac, char **av)
@@ -31,6 +36,7 @@ int			main(int ac, char **av)
 	while (--ac)
 	{
 		g_error.filename = *(++av);
+		g_error.id = 0;
 		if ((fd = open(*av, O_RDONLY)) < 3)
 			g_error.id = 1;
 		else

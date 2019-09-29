@@ -6,17 +6,28 @@
 /*   By: lcutjack <lcutjack@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/18 19:01:07 by lcutjack          #+#    #+#             */
-/*   Updated: 2019/09/29 14:26:34 by lcutjack         ###   ########.fr       */
+/*   Updated: 2019/09/29 15:30:49 by lcutjack         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
 
+/* old func ->
 static char		label_correct(char *l)
 {
 	while (*l && *l != LABEL_CHAR && ft_strchr(LABEL_CHARS, *l))
 		l++;
 	if (*l != LABEL_CHAR && *l)
+		return (0);
+	return (1);
+}
+*/
+
+char		label_correct(char *l)
+{
+	while (*l && ft_strchr(LABEL_CHARS, *l))
+		l++;
+	if (*l)
 		return (0);
 	return (1);
 }
@@ -28,11 +39,7 @@ static char		find_sep(char *l, size_t *p)
 		l[*p] != ' ' && l[*p] != SEPARATOR_CHAR && l[*p] != COMMENT_CHAR)
 		(*p)++;
 	if (l[*p] == LABEL_CHAR)
-	{
-		if (label_correct(l))
-			return (1);
-		return (0);
-	}
+		return (1);
 	if (l[*p] == DIRECT_CHAR || l[*p] == ' ' || l[*p] == '\t')
 		return (2);
 	if (l[*p] == SEPARATOR_CHAR)
@@ -77,7 +84,11 @@ static char		check_arg(char **arg, char *type, int *value)
 		*value = ft_atoi(new);
 		tmp = ft_itoa(ft_atoi(new));
 		if (ft_strcmp(tmp, new) && (g_error.id = 12))
+		{
+			free(tmp);
 			return (1);
+		}
+		free(tmp);
 		new = NULL;
 	}
 	*arg = new;
@@ -165,6 +176,7 @@ t_tokens	*validate(int fd)
 				curr = curr->next;
 			}
 		}
+		free(line);
 		if (g_error.id && (g_error.str_er = line))
 			return (NULL);
 	}

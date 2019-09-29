@@ -6,7 +6,7 @@
 /*   By: lcutjack <lcutjack@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/26 17:41:30 by lcutjack          #+#    #+#             */
-/*   Updated: 2019/09/27 15:50:57 by lcutjack         ###   ########.fr       */
+/*   Updated: 2019/09/29 15:16:03 by lcutjack         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,12 +64,18 @@ typedef	struct	s_m
 
 void			say_error(void);
 
-void			read_code(int fd, t_out *out);
+int 			read_code(int fd, t_out *out);
 t_tokens		*validate(int fd);
 void			cook_raw(int fd, t_out **out); // вернет код ошибки в случае провала и 0 при успешном декодировании
 
 int				empty(char *s, size_t n);
 void			skip_emptyness(char **p);
+void			del_marks(t_mark *me);
+void			del_output(t_out **out);
+void			del_tokens(t_tokens *me);
+
 t_op			*check_command(char *l, size_t pos);
+
+char		label_correct(char *l);
 
 #endif
