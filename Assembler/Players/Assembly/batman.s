@@ -1,7 +1,7 @@
 .name       "Batman"
 .comment    "This city needs me"
 
-loop:
+lo*op:
         sti r1, %:live, %1
 live:
         live %0

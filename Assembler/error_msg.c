@@ -6,13 +6,13 @@
 /*   By: lcutjack <lcutjack@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/04 15:20:54 by lcutjack          #+#    #+#             */
-/*   Updated: 2019/09/27 14:22:55 by lcutjack         ###   ########.fr       */
+/*   Updated: 2019/09/28 21:37:06 by lcutjack         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
 
-static char	*g_msg[15] = {
+static char	*g_msg[16] = {
 	"\033[0;32m; can't allocate memory\n\033[0m",
 	"\033[0;32m doesn't exist or is invalid for some reasons\n\033[0m",
 	"\033[0;32m have incorrect extension  [must be \".s\"]\n\033[0m",
@@ -25,9 +25,10 @@ static char	*g_msg[15] = {
 	"\033[0;32m can't be created new file\n\033[0m",
 	"\033[0;32m incorrect command:\n\033[0m",
 	"\033[0;32m incorrect argument:\n\033[0m",
-	"\033[0;32m incorrect number of arguments:\n\033[0m",/* 13 */
+	"\033[0;32m incorrect number of arguments:\n\033[0m",/* 12 */
 	"\033[0;32m incorrect command:\n\033[0m",
-	"\033[0;32m this mark doesn't exist:\n\033[0m"
+	"\033[0;32m this mark doesn't exist:\n\033[0m",
+	"\033[0;32m incorrect label:\n\033[0m"
 };
 
 t_error		g_error = {NULL, 0, NULL};
@@ -40,6 +41,6 @@ void		say_error()
 	if (g_error.id > 9)
 	{
 		ft_putstr_fd("             ", 2);
-		ft_putstr_fd(g_error.str_er, 2);
+		ft_putendl_fd(g_error.str_er, 2);
 	}
 }
