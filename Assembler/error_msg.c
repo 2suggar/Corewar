@@ -6,7 +6,7 @@
 /*   By: lcutjack <lcutjack@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/04 15:20:54 by lcutjack          #+#    #+#             */
-/*   Updated: 2019/09/29 20:13:25 by lcutjack         ###   ########.fr       */
+/*   Updated: 2019/09/29 20:41:56 by lcutjack         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static char	*g_msg[16] = {
 	"\033[33m can't be created new file\n\033[0m",
 	"\033[33m incorrect command:   \033[0m",
 	"\033[33m incorrect argument:   \033[0m",
-	"\033[33m incorrect number of arguments:   \033[0m",/* 12 */
+	"\033[33m incorrect number of arguments:   \033[0m",
 	"\033[33m incorrect command:   \033[0m",
 	"\033[33m this mark doesn't exist:   \033[0m",
 	"\033[33m incorrect label:   \033[0m"
@@ -33,7 +33,7 @@ static char	*g_msg[16] = {
 
 t_error		g_error = {NULL, 0, NULL};
 
-void		say_error()
+void		say_error(void)
 {
 	ft_putstr_fd("\033[33mThe file : \033[0m", 2);
 	ft_putstr_fd(g_error.filename, 2);

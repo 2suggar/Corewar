@@ -6,13 +6,13 @@
 /*   By: lcutjack <lcutjack@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/18 14:51:12 by lcutjack          #+#    #+#             */
-/*   Updated: 2019/09/29 15:20:15 by lcutjack         ###   ########.fr       */
+/*   Updated: 2019/09/29 20:36:34 by lcutjack         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
 
-int	empty(char *s, size_t n)
+int		empty(char *s, size_t n)
 {
 	while (n > 0)
 	{
@@ -24,7 +24,7 @@ int	empty(char *s, size_t n)
 	return (1);
 }
 
-void skip_emptyness(char **p)
+void	skip_emptyness(char **p)
 {
 	while (**p == ' ' || **p == '\t')
 	{
@@ -32,7 +32,7 @@ void skip_emptyness(char **p)
 	}
 }
 
-void del_marks(t_mark *me)
+void	del_marks(t_mark *me)
 {
 	t_mark	*tmp;
 
@@ -45,13 +45,13 @@ void del_marks(t_mark *me)
 	}
 }
 
-void del_output(t_out **out)
+void	del_output(t_out **out)
 {
 	free(*out);
 	*out = NULL;
 }
 
-void del_tokens(t_tokens *me)
+void	del_tokens(t_tokens *me)
 {
 	t_tokens	*tmp;
 

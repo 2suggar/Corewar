@@ -6,7 +6,7 @@
 /*   By: lcutjack <lcutjack@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/18 19:01:07 by lcutjack          #+#    #+#             */
-/*   Updated: 2019/09/29 20:33:55 by lcutjack         ###   ########.fr       */
+/*   Updated: 2019/09/29 20:44:01 by lcutjack         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static char		label_correct(char *l)
 }
 */
 
-char		label_correct(char *l)
+char			label_correct(char *l)
 {
 	while (*l && ft_strchr(LABEL_CHARS, *l))
 		l++;
@@ -35,7 +35,7 @@ char		label_correct(char *l)
 static char		find_sep(char *l, size_t *p)
 {
 	*p = 0;
-	while(l[*p] && l[*p] != LABEL_CHAR && l[*p] != DIRECT_CHAR &&
+	while (l[*p] && l[*p] != LABEL_CHAR && l[*p] != DIRECT_CHAR &&
 		l[*p] != ' ' && l[*p] != SEPARATOR_CHAR && l[*p] != COMMENT_CHAR)
 		(*p)++;
 	if (l[*p] == LABEL_CHAR)
@@ -157,16 +157,16 @@ static t_tokens	*check_line(char *line)
 	return (new);
 }
 
-t_tokens	*validate(int fd)
+t_tokens		*validate(int fd)
 {
-    char		*line;
-    t_tokens	*toks;
+	char		*line;
+	t_tokens	*toks;
 	t_tokens	*curr;
 	t_tokens	*new;
 
 	toks = NULL;
-    while (get_next_line(fd, &line))
-    {
+	while (get_next_line(fd, &line))
+	{
 		if ((new = check_line(line)))
 		{
 			if (!toks)
