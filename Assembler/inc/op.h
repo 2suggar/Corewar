@@ -6,7 +6,7 @@
 /*   By: lcutjack <lcutjack@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/10/04 11:33:27 by zaz               #+#    #+#             */
-/*   Updated: 2019/09/23 21:28:43 by lcutjack         ###   ########.fr       */
+/*   Updated: 2019/09/29 19:46:01 by lcutjack         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,8 +84,8 @@ typedef struct		s_op
 	unsigned char	opcode;
 	unsigned int	cycles;
 	unsigned char	descrip[37];
-	unsigned char	a_typecode;
-	unsigned char	dir_size;
+	unsigned char	a_typecode; /* отвечает за наличие байта с типом аргументов */
+	unsigned char	dir_size; /* здесь лежит размер T_DIR для каждой команды(он отличается) */
 }					t_op;
 
 extern t_op				g_op_tab[17];

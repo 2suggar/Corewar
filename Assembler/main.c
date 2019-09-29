@@ -6,7 +6,7 @@
 /*   By: lcutjack <lcutjack@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/26 17:34:26 by lcutjack          #+#    #+#             */
-/*   Updated: 2019/09/29 15:27:36 by lcutjack         ###   ########.fr       */
+/*   Updated: 2019/09/29 15:46:30 by lcutjack         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ int			main(int ac, char **av)
 		}
 		if (g_error.id)
 			say_error();
+		free(fname);
 	}
 	return (0);
 }

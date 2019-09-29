@@ -6,7 +6,7 @@
 /*   By: lcutjack <lcutjack@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/18 19:01:07 by lcutjack          #+#    #+#             */
-/*   Updated: 2019/09/29 15:30:49 by lcutjack         ###   ########.fr       */
+/*   Updated: 2019/09/29 15:49:01 by lcutjack         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -176,9 +176,13 @@ t_tokens	*validate(int fd)
 				curr = curr->next;
 			}
 		}
-		free(line);
 		if (g_error.id && (g_error.str_er = line))
+		{
+			say_error();
+			free(line);
 			return (NULL);
+		}
+		free(line);
 	}
 	curr->next = NULL;
 	return (toks);
