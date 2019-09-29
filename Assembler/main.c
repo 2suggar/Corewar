@@ -6,7 +6,7 @@
 /*   By: lcutjack <lcutjack@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/26 17:34:26 by lcutjack          #+#    #+#             */
-/*   Updated: 2019/09/29 15:46:30 by lcutjack         ###   ########.fr       */
+/*   Updated: 2019/09/29 20:16:00 by lcutjack         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,14 @@ static char	*correct_name(char *name)
 	new = ft_strjoin(tmp, ".cor");
 	free(tmp);
 	return (new);
+}
+
+static void	say_okey(char *fname)
+{
+	ft_putstr_fd("\033[0;32mThe file : \033[0m", 1);
+	ft_putstr_fd(g_error.filename, 1);
+	ft_putstr_fd(" \033[32m ...Writing output to: \033[0m", 1);
+	ft_putstr_fd(fname, 1);
 }
 
 int			main(int ac, char **av)
@@ -49,6 +57,8 @@ int			main(int ac, char **av)
 		}
 		if (g_error.id)
 			say_error();
+		else
+			say_okey(fname);
 		free(fname);
 	}
 	return (0);
