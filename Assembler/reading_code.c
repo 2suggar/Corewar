@@ -6,7 +6,7 @@
 /*   By: lcutjack <lcutjack@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/18 14:27:58 by lcutjack          #+#    #+#             */
-/*   Updated: 2019/09/30 17:30:48 by lcutjack         ###   ########.fr       */
+/*   Updated: 2019/09/30 18:03:44 by lcutjack         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,7 +128,7 @@ static t_tokens *delete_empty(t_tokens *read)
 	t_tokens	*new;
 
 	new = read;
-	while (read->next)
+	while (read && read->next)
 	{
 		if (!(read->next->command))
 		{
@@ -136,7 +136,8 @@ static t_tokens *delete_empty(t_tokens *read)
 			read->next = read->next->next;
 			free(tmp);
 		}
-		read = read->next;
+		else
+			read = read->next;
 	}
 	if (!(new->command))
 	{

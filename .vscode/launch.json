@@ -9,7 +9,7 @@
             "type": "cppdbg",
             "request": "launch",
             "program": "${workspaceFolder}/Assembler/asm",
-            "args": ["Players/Assembly/bee_gees.s"],
+            "args": ["Players/Assembly/fluttershy.s"],
             "stopAtEntry": false,
             "cwd": "${workspaceFolder}/Assembler",
             "environment": [],
