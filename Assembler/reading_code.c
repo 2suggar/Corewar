@@ -6,7 +6,7 @@
 /*   By: lcutjack <lcutjack@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/18 14:27:58 by lcutjack          #+#    #+#             */
-/*   Updated: 2019/09/29 20:38:37 by lcutjack         ###   ########.fr       */
+/*   Updated: 2019/09/30 17:30:48 by lcutjack         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,7 +130,7 @@ static t_tokens *delete_empty(t_tokens *read)
 	new = read;
 	while (read->next)
 	{
-		if (!read->next->command)
+		if (!(read->next->command))
 		{
 			tmp = read->next;
 			read->next = read->next->next;
@@ -138,13 +138,13 @@ static t_tokens *delete_empty(t_tokens *read)
 		}
 		read = read->next;
 	}
-	if (!new->command)
+	if (!(new->command))
 	{
 		tmp = new->next;
 		free(new);
 		return (tmp);
 	}
-	return (read);
+	return (new);
 }
 
 int		read_code(int fd, t_out *out)
@@ -152,7 +152,8 @@ int		read_code(int fd, t_out *out)
 	t_tokens	*read;
 	t_mark		*mark;
 
-	read = validate(fd);
+	if (!(read = validate(fd)))
+		return (1);
 	if (!(mark = fill_mark(read)))
 		return (1);
 	// while (mark)

@@ -6,7 +6,7 @@
 #    By: lcutjack <lcutjack@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/07/19 16:35:27 by lcutjack          #+#    #+#              #
-#    Updated: 2019/09/24 19:54:08 by lcutjack         ###   ########.fr        #
+#    Updated: 2019/09/30 17:27:19 by lcutjack         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,7 +42,7 @@ all: $(NAME)
 
 
 $(NAME):
-	gcc -g $(FLAGS) $(SRC) $(INC) -o $(NAME) $(LIB)
+	gcc -g $(SRC) $(INC) -o $(NAME) $(LIB)
 
 fclean:
 	rm -rf $(NAME) *.o

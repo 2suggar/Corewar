@@ -9,7 +9,7 @@
             "type": "cppdbg",
             "request": "launch",
             "program": "${workspaceFolder}/Assembler/asm",
-            "args": ["Players/Assembly/batman.s"],
+            "args": ["Players/Assembly/bee_gees.s"],
             "stopAtEntry": false,
             "cwd": "${workspaceFolder}/Assembler",
             "environment": [],

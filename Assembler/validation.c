@@ -6,7 +6,7 @@
 /*   By: lcutjack <lcutjack@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/18 19:01:07 by lcutjack          #+#    #+#             */
-/*   Updated: 2019/09/29 20:44:01 by lcutjack         ###   ########.fr       */
+/*   Updated: 2019/09/30 17:23:44 by lcutjack         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ static char		find_sep(char *l, size_t *p)
 {
 	*p = 0;
 	while (l[*p] && l[*p] != LABEL_CHAR && l[*p] != DIRECT_CHAR &&
-		l[*p] != ' ' && l[*p] != SEPARATOR_CHAR && l[*p] != COMMENT_CHAR)
+		l[*p] != ' ' &&  l[*p] != '\t' && l[*p] != SEPARATOR_CHAR && l[*p] != COMMENT_CHAR)
 		(*p)++;
 	if (l[*p] == LABEL_CHAR)
 		return (1);
@@ -99,11 +99,27 @@ static char		check_arg(char **arg, char *type, int *value)
 	return (0);
 }
 
+void			check_for_comment(char *line)
+{
+	char	*p1;
+	char	*p2;
+
+	p1 = ft_strchr(line, COMMENT_CHAR);
+	p2 = ft_strchr(line, ALT_COMMENT_CHAR);
+	if (!p1 && !p2)
+		return ;
+	if ((p1 > p2 && p2) || !p1)
+		*p2 = '\0';
+	else if ((p2 > p1 && p1) || !p2)
+		*p1 = '\0';
+}
+
 char			parse_args(char *line, t_tokens *new)
 {
 	char	**args;
 	int		n_arg;
 
+	check_for_comment(line);
 	n_arg = 0;
 	args = ft_strsplit(line, SEPARATOR_CHAR);
 	while (args[n_arg])
