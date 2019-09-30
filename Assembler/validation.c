@@ -6,7 +6,7 @@
 /*   By: lcutjack <lcutjack@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/18 19:01:07 by lcutjack          #+#    #+#             */
-/*   Updated: 2019/09/30 18:53:53 by lcutjack         ###   ########.fr       */
+/*   Updated: 2019/09/30 21:13:19 by lcutjack         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -132,16 +132,16 @@ char			parse_args(char *line, t_tokens *new)
 	args = ft_strsplit(line, SEPARATOR_CHAR);
 	while (args[n_arg])
 	{
+		if (n_arg > new->command->arg_q && (g_error.id = 12))
+			return (1);
 		if (check_arg(&args[n_arg], &new->types[n_arg], &new->values[n_arg]))
 			return (1);
 		n_arg++;
-		if (n_arg > 3 && (g_error.id = 13))
-			return (1);
 	}
 	new->a1 = args[0];
 	new->a2 = n_arg > 1 ? args[1] : NULL;
 	new->a3 = n_arg > 2 ? args[2] : NULL;
-	if (n_arg != new->command->arg_q)
+	if (n_arg != new->command->arg_q && (g_error.id = 12))
 		return (1);
 	if (!(new->types[0] & new->command->arg_type[0]) ||
 		(!(new->types[1] & new->command->arg_type[1]) && n_arg > 1) ||
@@ -206,8 +206,9 @@ t_tokens		*validate(int fd)
 		}
 		if (g_error.id && (g_error.str_er = line))
 		{
-			say_error();
-			free(line);
+			// say_error();
+			// free(line);
+			line = NULL;
 			return (NULL);
 		}
 		free(line);
