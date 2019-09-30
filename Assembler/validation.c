@@ -6,7 +6,7 @@
 /*   By: lcutjack <lcutjack@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/18 19:01:07 by lcutjack          #+#    #+#             */
-/*   Updated: 2019/09/30 18:36:09 by lcutjack         ###   ########.fr       */
+/*   Updated: 2019/09/30 18:53:53 by lcutjack         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,15 +96,11 @@ static char		check_arg(char **arg, char *type, int *value)
 	else
 	{
 		*value = ft_atoi(new);
-		// tmp = ft_itoa(ft_atoi(new));
 		if (!is_number(new) && (g_error.id = 11))
 		{
 			g_error.str_er = new;
-			// free(tmp);
-			free(new);
 			return (1);
 		}
-		// free(tmp);
 		new = NULL;
 	}
 	*arg = new;
