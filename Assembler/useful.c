@@ -6,13 +6,13 @@
 /*   By: lcutjack <lcutjack@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/01 14:40:53 by lcutjack          #+#    #+#             */
-/*   Updated: 2019/10/01 14:52:10 by lcutjack         ###   ########.fr       */
+/*   Updated: 2019/10/01 15:59:41 by lcutjack         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
 
-void        show_tokens(t_tokens *me)
+void		show_tokens(t_tokens *me)
 {
 	while (me)
 	{
@@ -31,9 +31,9 @@ void        show_tokens(t_tokens *me)
 	}
 }
 
-void        show_marks(t_mark *mark)
+void		show_marks(t_mark *mark)
 {
-    while (mark)
+	while (mark)
 	{
 		printf("|||%s|||%lu|||\n", mark->mark, mark->size);
 		mark = mark->next;

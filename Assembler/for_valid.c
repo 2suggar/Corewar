@@ -6,7 +6,7 @@
 /*   By: lcutjack <lcutjack@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/01 14:53:52 by lcutjack          #+#    #+#             */
-/*   Updated: 2019/10/01 15:43:40 by lcutjack         ###   ########.fr       */
+/*   Updated: 2019/10/01 15:51:45 by lcutjack         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ char			label_correct(char *l)
 	return (1);
 }
 
-int             is_number(char *s)
+int				is_number(char *s)
 {
 	if (*s == '-' || ft_isdigit(*s))
 	{
@@ -32,7 +32,7 @@ int             is_number(char *s)
 	return (0);
 }
 
-t_tokens *del_empty(t_tokens *read)
+t_tokens		*del_empty(t_tokens *read)
 {
 	t_tokens	*tmp;
 	t_tokens	*new;

@@ -6,7 +6,7 @@
 /*   By: lcutjack <lcutjack@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/18 14:27:58 by lcutjack          #+#    #+#             */
-/*   Updated: 2019/10/01 14:48:13 by lcutjack         ###   ########.fr       */
+/*   Updated: 2019/10/01 20:49:43 by lcutjack         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,7 @@ static int			calc_mark(char *name, size_t n, t_mark *marks)
 		g_error.id = 14;
 		g_error.str_er = name;
 	}
+	*name = 'a';
 	return (pos - (int)n);
 }
 
@@ -94,9 +95,9 @@ static void			replace_marks(t_tokens *read, t_mark *mark)
 				read->values[1] = calc_mark(read->a2, n, mark);
 			if (read->a3)
 				read->values[2] = calc_mark(read->a3, n, mark);
-			read->a1 = NULL;
-			read->a2 = NULL;
-			read->a3 = NULL;
+			ft_strdel(&read->a1);
+			ft_strdel(&read->a2);
+			ft_strdel(&read->a3);
 			n += weight(read);
 		}
 		read = read->next;
