@@ -6,7 +6,7 @@
 /*   By: lcutjack <lcutjack@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/18 19:01:07 by lcutjack          #+#    #+#             */
-/*   Updated: 2019/09/30 21:13:19 by lcutjack         ###   ########.fr       */
+/*   Updated: 2019/10/01 14:55:54 by lcutjack         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,15 +22,6 @@ static char		label_correct(char *l)
 	return (1);
 }
 */
-
-char			label_correct(char *l)
-{
-	while (*l && ft_strchr(LABEL_CHARS, *l))
-		l++;
-	if (*l)
-		return (0);
-	return (1);
-}
 
 static char		find_sep(char *l, size_t *p)
 {
@@ -48,17 +39,6 @@ static char		find_sep(char *l, size_t *p)
 }
 
 /* 1- метка 2- команда 3- аргумент 0- конец строки или коммент */
-
-static int is_number(char *s)
-{
-	if (*s == '-' || ft_isdigit(*s))
-	{
-		if (ft_is_ok(s + 1, ft_isdigit))
-			return (1);
-		return (0);
-	}
-	return (0);
-}
 
 static char		check_arg(char **arg, char *type, int *value)
 {

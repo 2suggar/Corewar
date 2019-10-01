@@ -6,7 +6,7 @@
 /*   By: lcutjack <lcutjack@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/26 17:41:30 by lcutjack          #+#    #+#             */
-/*   Updated: 2019/09/29 15:16:03 by lcutjack         ###   ########.fr       */
+/*   Updated: 2019/10/01 14:55:02 by lcutjack         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,9 +73,17 @@ void			skip_emptyness(char **p);
 void			del_marks(t_mark *me);
 void			del_output(t_out **out);
 void			del_tokens(t_tokens *me);
+t_tokens		*del_empty(t_tokens *read);
 
 t_op			*check_command(char *l, size_t pos);
 
-char		label_correct(char *l);
+char			label_correct(char *l);
+int				is_number(char *s);
+
+void			write_magic(t_out *out);
+
+/* dont forget to delete */
+void        	show_tokens(t_tokens *me);
+void			show_marks(t_mark *mark);
 
 #endif

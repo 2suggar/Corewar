@@ -6,7 +6,7 @@
 /*   By: lcutjack <lcutjack@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/04 15:20:54 by lcutjack          #+#    #+#             */
-/*   Updated: 2019/09/29 20:41:56 by lcutjack         ###   ########.fr       */
+/*   Updated: 2019/10/01 14:37:43 by lcutjack         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static char	*g_msg[16] = {
 	"\033[33m incorrect argument:   \033[0m",
 	"\033[33m incorrect number of arguments:   \033[0m",
 	"\033[33m incorrect command:   \033[0m",
-	"\033[33m this mark doesn't exist:   \033[0m",
+	"\033[33m this label doesn't exist:   \033[0m",
 	"\033[33m incorrect label:   \033[0m"
 };
 

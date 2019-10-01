@@ -6,7 +6,7 @@
 /*   By: lcutjack <lcutjack@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/10/04 11:43:01 by zaz               #+#    #+#             */
-/*   Updated: 2019/09/30 17:18:11 by lcutjack         ###   ########.fr       */
+/*   Updated: 2019/10/01 14:35:26 by lcutjack         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,12 +44,13 @@ t_op		*check_command(char *l, size_t pos)
 	int		i;
 
 	i = -1;
-	if (pos > 5 && (g_error.id = 14))
+	if (pos > 5 && (g_error.id = 10))
 		return (NULL);
 	while (++i < 17)
 	{
-		if (!ft_strncmp(l, (char *)&(g_op_tab[i].cmd), pos))
+		if (ft_strnequ(l, (char *)&(g_op_tab[i].cmd), pos))
 			return (&g_op_tab[i]);
 	}
+	g_error.id = 10;
 	return (NULL);
 }

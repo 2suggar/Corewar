@@ -6,32 +6,13 @@
 /*   By: lcutjack <lcutjack@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/18 14:27:58 by lcutjack          #+#    #+#             */
-/*   Updated: 2019/09/30 18:03:44 by lcutjack         ###   ########.fr       */
+/*   Updated: 2019/10/01 14:48:13 by lcutjack         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
 
-static void	show_tokens(t_tokens *me)
-{
-	while (me)
-	{
-		if (me->mark)
-			printf("\033[34mMARK:\033[32m|%s|\033[0m \n", me->mark);
-		if (me->command)
-		{
-			printf("COM: \033[32m|%6s|\033[0m ARG1/TYPE/VALUE: \033[32m|%6s|%d|%3d|\033[0m ", (char*)me->command->cmd, me->a1, (int)me->types[0], me->values[0]);
-			printf("ARG2/TYPE/VALUE: \033[32m|%6s|%d|%3d|\033[0m ", me->a2, (int)me->types[1], me->values[1]);
-			printf("ARG3/TYPE/VALUE: \033[32m|%6s|%d|%3d|\033[0m ", me->a3, (int)me->types[2], me->values[2]);
-			printf("\n");
-		}
-		else
-			printf("\033[31mI AM EMPTY\n\033[0m");
-		me = me->next;
-	}
-}
-
-static size_t	weight(t_tokens *me)
+static size_t		weight(t_tokens *me)
 {
 	size_t	n;
 
@@ -46,7 +27,7 @@ static size_t	weight(t_tokens *me)
 	return (n);
 }
 
-static t_mark *fill_mark(t_tokens *read)
+static t_mark		*fill_mark(t_tokens *read)
 {
 	size_t	n;
 	t_mark	*mark;
@@ -65,7 +46,8 @@ static t_mark *fill_mark(t_tokens *read)
 			start->size = n;
 			mark = start;
 		}
-		else if (read->mark && (g_error.id = 15) && (g_error.str_er = read->mark))
+		else if (read->mark && (g_error.id = 15) &&
+			(g_error.str_er = read->mark))
 			return (NULL);
 		n += weight(read);
 		read = read->next;
@@ -73,7 +55,7 @@ static t_mark *fill_mark(t_tokens *read)
 	return (start);
 }
 
-static int	calc_mark(char *name, size_t n, t_mark *marks)
+static int			calc_mark(char *name, size_t n, t_mark *marks)
 {
 	int	pos;
 
@@ -95,7 +77,7 @@ static int	calc_mark(char *name, size_t n, t_mark *marks)
 	return (pos - (int)n);
 }
 
-static void replace_marks(t_tokens *read, t_mark *mark)
+static void			replace_marks(t_tokens *read, t_mark *mark)
 {
 	size_t	n;
 
@@ -122,33 +104,7 @@ static void replace_marks(t_tokens *read, t_mark *mark)
 	del_marks(mark);
 }
 
-static t_tokens *delete_empty(t_tokens *read)
-{
-	t_tokens	*tmp;
-	t_tokens	*new;
-
-	new = read;
-	while (read && read->next)
-	{
-		if (!(read->next->command))
-		{
-			tmp = read->next;
-			read->next = read->next->next;
-			free(tmp);
-		}
-		else
-			read = read->next;
-	}
-	if (!(new->command))
-	{
-		tmp = new->next;
-		free(new);
-		return (tmp);
-	}
-	return (new);
-}
-
-int		read_code(int fd, t_out *out)
+int					read_code(int fd, t_out *out)
 {
 	t_tokens	*read;
 	t_mark		*mark;
@@ -157,12 +113,8 @@ int		read_code(int fd, t_out *out)
 		return (1);
 	if (!(mark = fill_mark(read)))
 		return (1);
-	// while (mark)
-	// {
-	// 	printf("|||%s|||%lu|||\n", mark->mark, mark->size);
-	// 	mark = mark->next; 
-	// }
-	read = delete_empty(read);
+	show_marks(mark);
+	read = del_empty(read);
 	replace_marks(read, mark);
 	show_tokens(read);
 	out->c_exist = 1;

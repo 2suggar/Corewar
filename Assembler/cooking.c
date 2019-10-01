@@ -6,24 +6,11 @@
 /*   By: lcutjack <lcutjack@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/17 14:12:42 by lcutjack          #+#    #+#             */
-/*   Updated: 2019/09/29 15:14:46 by lcutjack         ###   ########.fr       */
+/*   Updated: 2019/10/01 14:51:48 by lcutjack         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
-
-static void	write_magic(t_out *out)
-{
-	char	*lol;
-	int		value;
-	int		i;
-
-	i = 4;
-	value = COREWAR_EXEC_MAGIC;
-	lol = (char*)&value;
-	while (--i >= 0)
-		out->head[i] = *(lol + i);
-}
 
 static void	read_name(int fd, t_out *out, char *line)
 {
