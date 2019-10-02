@@ -6,7 +6,7 @@
 /*   By: lcutjack <lcutjack@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/04 15:20:54 by lcutjack          #+#    #+#             */
-/*   Updated: 2019/10/01 17:23:55 by lcutjack         ###   ########.fr       */
+/*   Updated: 2019/10/02 14:56:55 by lcutjack         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,5 +43,5 @@ void		say_error(void)
 		ft_putendl_fd(g_error.str_er, 2);
 	}
 	free(g_error.str_er);
-	free(g_error.filename);
+	//free(g_error.filename);
 }

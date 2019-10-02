@@ -6,7 +6,7 @@
 /*   By: lcutjack <lcutjack@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/18 19:01:07 by lcutjack          #+#    #+#             */
-/*   Updated: 2019/10/01 16:43:43 by lcutjack         ###   ########.fr       */
+/*   Updated: 2019/10/02 16:24:10 by lcutjack         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,12 @@ static char		find_sep(char *l, size_t *p)
 }
 /* 1- метка 2- команда 3- аргумент 0- конец строки или коммент */
 
+static void		*free_return(t_tokens *new)
+{
+	del_tokens(new);
+	return (NULL);
+}
+
 static t_tokens	*check_line(char *line)
 {
 	t_tokens	*new;
@@ -37,10 +43,10 @@ static t_tokens	*check_line(char *line)
 	skip_emptyness(&line);
 	if (*line == COMMENT_CHAR || !*line)
 		return (NULL);
-	new = ft_memalloc(sizeof(t_tokens));
 	if (!(feedback = find_sep(line, &pos)) ||
 		((feedback == 3) && (g_error.id = 10)))
 		return (NULL);
+	new = ft_memalloc(sizeof(t_tokens));
 	if (feedback == 1)
 	{
 		new->mark = ft_strsub(line, 0, pos);
@@ -49,11 +55,11 @@ static t_tokens	*check_line(char *line)
 		if ((feedback = find_sep(line, &pos)) == 0)
 			return (new);
 		else if (feedback != 2)
-			return (NULL);
+			return (free_return(new));
 	}
 	if (!(new->command = check_command(line, pos)) ||
 		parse_args(line + pos + 1, new))
-		return (NULL);
+		return (free_return(new));
 	return (new);
 }
 
@@ -86,9 +92,10 @@ t_tokens		*validate(int fd)
 		if (g_error.id && (g_error.str_er = line))
 		{
 			line = NULL;
+			del_tokens(toks);
 			return (NULL);
 		}
-		free(line);
+		ft_strdel(&line);
 	}
 	curr->next = NULL;
 	return (toks);

@@ -6,7 +6,7 @@
 /*   By: lcutjack <lcutjack@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/18 14:51:12 by lcutjack          #+#    #+#             */
-/*   Updated: 2019/10/01 20:40:51 by lcutjack         ###   ########.fr       */
+/*   Updated: 2019/10/02 16:13:37 by lcutjack         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,10 @@ void	del_tokens(t_tokens *me)
 	{
 		tmp = me;
 		me = me->next;
+		free(tmp->mark);
+		free(tmp->a1);
+		free(tmp->a2);
+		free(tmp->a3);
 		free(tmp);
 	}
 }

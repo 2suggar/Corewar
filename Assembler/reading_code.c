@@ -6,7 +6,7 @@
 /*   By: lcutjack <lcutjack@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/18 14:27:58 by lcutjack          #+#    #+#             */
-/*   Updated: 2019/10/01 20:49:43 by lcutjack         ###   ########.fr       */
+/*   Updated: 2019/10/02 16:20:35 by lcutjack         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,7 +113,11 @@ int					read_code(int fd, t_out *out)
 	if (!(read = validate(fd)))
 		return (1);
 	if (!(mark = fill_mark(read)))
+	{
+		del_marks(mark);
+		del_tokens(read);
 		return (1);
+	}
 	show_marks(mark);
 	read = del_empty(read);
 	replace_marks(read, mark);
