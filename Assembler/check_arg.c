@@ -6,7 +6,7 @@
 /*   By: lcutjack <lcutjack@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/01 15:54:34 by lcutjack          #+#    #+#             */
-/*   Updated: 2019/10/02 18:39:32 by lcutjack         ###   ########.fr       */
+/*   Updated: 2019/10/02 20:33:15 by lcutjack         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ static char		*fill_type(char *type, char *s)
 		ft_strdel(&s);
 		return (tmp);
 	}
-		printf("%s", s);
 	*type = T_IND;
 	return (s);
 }
