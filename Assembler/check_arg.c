@@ -6,7 +6,7 @@
 /*   By: lcutjack <lcutjack@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/01 15:54:34 by lcutjack          #+#    #+#             */
-/*   Updated: 2019/10/02 14:52:22 by lcutjack         ###   ########.fr       */
+/*   Updated: 2019/10/02 18:39:32 by lcutjack         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ static char		check_value(int *value, char **s)
 		*value = ft_atoi(*s);
 		if (!is_number(*s) && (g_error.id = 11))
 		{
-			g_error.str_er = *s;
+			// g_error.str_er = *s;
 			*s = NULL;
 			return (1);
 		}
