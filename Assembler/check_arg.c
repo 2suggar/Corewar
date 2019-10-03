@@ -6,7 +6,7 @@
 /*   By: lcutjack <lcutjack@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/01 15:54:34 by lcutjack          #+#    #+#             */
-/*   Updated: 2019/10/02 20:33:15 by lcutjack         ###   ########.fr       */
+/*   Updated: 2019/10/03 18:45:11 by lcutjack         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,14 +20,14 @@ static char		*fill_type(char *type, char *s)
 	{
 		*type = T_DIR;
 		tmp = ft_strdup(s + 1);
-		ft_strdel(&s);
+		free(s);
 		return (tmp);
 	}
 	else if (*s == 'r' && ft_is_ok(s + 1, ft_isdigit))
 	{
 		*type = T_REG;
 		tmp = ft_strdup(s + 1);
-		ft_strdel(&s);
+		free(s);
 		return (tmp);
 	}
 	*type = T_IND;
@@ -70,13 +70,9 @@ char			check_arg(char **arg, char *type, int *value)
 
 	new = ft_strtrim(*arg);
 	free(*arg);
-	new = fill_type(type, new);
+	*arg = fill_type(type, new);
 	if (check_value(value, &new))
-	{
-		*arg = new;
 		return (1);
-	}
-	*arg = new;
 	return (0);
 }
 
@@ -106,9 +102,21 @@ char			parse_args(char *line, t_tokens *new)
 	while (args[n_arg])
 	{
 		if (n_arg > new->command->arg_q && (g_error.id = 12))
+		{
+			free(args[0]);
+			free(args[1]);
+			free(args[2]);
+			free(args);
 			return (1);
+		}
 		if (check_arg(&args[n_arg], &new->types[n_arg], &new->values[n_arg]))
+		{
+			free(args[0]);
+			free(args[1]);
+			free(args[2]);
+			free(args);			
 			return (1);
+		}
 		n_arg++;
 	}
 	new->a1 = args[0];
