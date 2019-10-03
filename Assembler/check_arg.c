@@ -6,7 +6,7 @@
 /*   By: lcutjack <lcutjack@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/01 15:54:34 by lcutjack          #+#    #+#             */
-/*   Updated: 2019/10/03 18:45:11 by lcutjack         ###   ########.fr       */
+/*   Updated: 2019/10/03 20:22:44 by lcutjack         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ char			check_arg(char **arg, char *type, int *value)
 	new = ft_strtrim(*arg);
 	free(*arg);
 	*arg = fill_type(type, new);
-	if (check_value(value, &new))
+	if (check_value(value, arg))
 		return (1);
 	return (0);
 }

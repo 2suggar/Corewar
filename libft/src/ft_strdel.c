@@ -6,7 +6,7 @@
 /*   By: lcutjack <lcutjack@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/27 12:07:20 by lcutjack          #+#    #+#             */
-/*   Updated: 2019/05/27 15:25:48 by lcutjack         ###   ########.fr       */
+/*   Updated: 2019/10/03 18:47:28 by lcutjack         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,5 @@ void	ft_strdel(char **as)
 	if (!as || !*as)
 		return ;
 	i = 0;
-	while ((*as)[i])
-		(*as)[i++] = '\0';
 	ft_memdel((void**)as);
 }
