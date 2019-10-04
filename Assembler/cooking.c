@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   cooking.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lcutjack <lcutjack@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ksenia <ksenia@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/17 14:12:42 by lcutjack          #+#    #+#             */
-/*   Updated: 2019/10/02 16:19:46 by lcutjack         ###   ########.fr       */
+/*   Updated: 2019/10/04 15:20:30 by ksenia           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
 
-void		cook_raw(int fd, t_out **out)
+void		cook_raw(int fd, t_out **out, char *filename)
 {
 	t_out	*output;
 
@@ -31,6 +31,7 @@ void		cook_raw(int fd, t_out **out)
 		return ;
 	}
 	write_magic(output);
+    to_file(output, filename);
 	*out = output;
 	del_output(out);
 }

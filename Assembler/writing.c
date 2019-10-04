@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   writing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lcutjack <lcutjack@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ksenia <ksenia@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/26 20:26:05 by lcutjack          #+#    #+#             */
-/*   Updated: 2019/10/01 15:58:13 by lcutjack         ###   ########.fr       */
+/*   Updated: 2019/10/03 00:55:10 by ksenia           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,12 @@ void	write_magic(t_out *out)
 	char	*lol;
 	int		value;
 	int		i;
+	int		j;
 
-	i = 4;
+	i = -1;
+	j = 4;
 	value = COREWAR_EXEC_MAGIC;
 	lol = (char*)&value;
-	while (--i >= 0)
-		out->head[i] = *(lol + i);
+	while (++i < 4)
+		out->head[--j] = *(lol + i);
 }

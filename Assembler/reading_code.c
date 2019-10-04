@@ -6,7 +6,7 @@
 /*   By: lcutjack <lcutjack@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/18 14:27:58 by lcutjack          #+#    #+#             */
-/*   Updated: 2019/10/02 18:37:26 by lcutjack         ###   ########.fr       */
+/*   Updated: 2019/10/04 20:47:02 by lcutjack         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,7 +121,8 @@ int					read_code(int fd, t_out *out)
 	read = del_empty(read);
 	replace_marks(read, mark);
 	show_tokens(read);
+    code_to_bytes(read, out);
 	out->c_exist = 1;
-	del_tokens(read);
+	//del_tokens(read);
 	return (0);
 }

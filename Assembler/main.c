@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lcutjack <lcutjack@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ksenia <ksenia@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/26 17:34:26 by lcutjack          #+#    #+#             */
-/*   Updated: 2019/10/01 15:43:37 by lcutjack         ###   ########.fr       */
+/*   Updated: 2019/10/04 15:20:53 by ksenia           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ int			main(int ac, char **av)
 			if (!(fname = correct_name(*av)))
 				g_error.id = 2;
 			else
-				cook_raw(fd, &out);
+				cook_raw(fd, &out, fname);
 			close(fd);
 		}
 		if (g_error.id)

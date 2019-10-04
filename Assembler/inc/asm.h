@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   asm.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lcutjack <lcutjack@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ksenia <ksenia@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/26 17:41:30 by lcutjack          #+#    #+#             */
-/*   Updated: 2019/10/01 16:47:53 by lcutjack         ###   ########.fr       */
+/*   Updated: 2019/10/04 15:03:46 by ksenia           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ typedef struct	s_out {
 	char		code[CHAMP_MAX_SIZE];
 	char		c_exist;
 	char		n_exist;
+	int			code_size_int;
 }				t_out;
 
 /* validation part */
@@ -70,7 +71,7 @@ char			check_arg(char **arg, char *type, int *value);
 void			read_n_c(int fd, t_out *out);
 int 			read_code(int fd, t_out *out);
 t_tokens		*validate(int fd);
-void			cook_raw(int fd, t_out **out); // вернет код ошибки в случае провала и 0 при успешном декодировании
+void		cook_raw(int fd, t_out **out, char *filename); // вернет код ошибки в случае провала и 0 при успешном декодировании
 
 int				empty(char *s, size_t n);
 void			skip_emptyness(char **p);
@@ -89,5 +90,8 @@ void			write_magic(t_out *out);
 /* dont forget to delete */
 void        	show_tokens(t_tokens *me);
 void			show_marks(t_mark *mark);
+
+void to_file(t_out	*output, char *filename);
+void code_to_bytes(t_tokens *tokens, t_out *out);
 
 #endif
