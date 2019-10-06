@@ -6,7 +6,7 @@
 /*   By: ksenia <ksenia@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/26 17:41:30 by lcutjack          #+#    #+#             */
-/*   Updated: 2019/10/04 15:03:46 by ksenia           ###   ########.fr       */
+/*   Updated: 2019/10/06 18:46:18 by ksenia           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,5 +93,7 @@ void			show_marks(t_mark *mark);
 
 void to_file(t_out	*output, char *filename);
 void code_to_bytes(t_tokens *tokens, t_out *out);
+
+void	*ft_memcpy_rev(void *dst, const void *src, size_t n);
 
 #endif
