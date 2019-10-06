@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   asm.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ksenia <ksenia@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lcutjack <lcutjack@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/26 17:41:30 by lcutjack          #+#    #+#             */
-/*   Updated: 2019/10/06 18:46:18 by ksenia           ###   ########.fr       */
+/*   Updated: 2019/10/06 21:37:12 by lcutjack         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include "libft.h"
 # include "op.h"
 # include <stdio.h>
+# include <stdlib.h>
 
 typedef struct	s_out {
 	char		head[4];

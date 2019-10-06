@@ -6,7 +6,7 @@
 /*   By: lcutjack <lcutjack@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/18 14:27:58 by lcutjack          #+#    #+#             */
-/*   Updated: 2019/10/06 21:28:58 by lcutjack         ###   ########.fr       */
+/*   Updated: 2019/10/06 21:52:12 by lcutjack         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ static t_mark		*fill_mark(t_tokens *read)
 	mark = NULL;
 	while (read)
 	{
-		printf("HERE: %lu\n", n);
+		// printf("HERE: %lu\n", n);
 		n += weight(read);
 		if (read->mark && label_correct(read->mark))
 		{
@@ -119,7 +119,7 @@ int					read_code(int fd, t_out *out)
 		del_tokens(read);
 		return (1);
 	}
-	show_marks(mark);
+	// show_marks(mark);
 	read = del_empty(read);
 	out->code_size_int = replace_marks(read, mark);
 	show_tokens(read);

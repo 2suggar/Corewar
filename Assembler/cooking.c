@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cooking.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ksenia <ksenia@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lcutjack <lcutjack@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/17 14:12:42 by lcutjack          #+#    #+#             */
-/*   Updated: 2019/10/04 15:20:30 by ksenia           ###   ########.fr       */
+/*   Updated: 2019/10/06 21:51:39 by lcutjack         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,13 @@
 void		cook_raw(int fd, t_out **out, char *filename)
 {
 	t_out	*output;
+	char	buf[1];
 
+	lseek(fd, -1, 2);
+	read(fd, buf, 1);
+	if (*buf != '\n' && (g_error.id = 16))
+		return ;
+	lseek(fd, 0, 0);
 	if (!(output = ft_memalloc(sizeof(t_out))))
 		return ;
 	read_n_c(fd, output);
