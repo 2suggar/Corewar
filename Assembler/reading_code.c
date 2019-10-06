@@ -6,7 +6,7 @@
 /*   By: lcutjack <lcutjack@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/18 14:27:58 by lcutjack          #+#    #+#             */
-/*   Updated: 2019/10/06 20:52:37 by lcutjack         ###   ########.fr       */
+/*   Updated: 2019/10/06 21:28:58 by lcutjack         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ static size_t		weight(t_tokens *me)
 	n += me->types[0] == T_DIR ? me->command->dir_size : me->types[0];
 	n += me->types[1] == T_DIR ? me->command->dir_size : me->types[1];
 	n += me->types[2] == T_DIR ? me->command->dir_size : me->types[2];
-	// printf("HERE: %lu||||||| %d ||||| %d\n", n, me->types[1], me->types[2]);
 	return (n);
 }
 
@@ -79,7 +78,7 @@ static int			calc_mark(char *name, size_t n, t_mark *marks)
 	return (pos - (int)n);
 }
 
-static void			replace_marks(t_tokens *read, t_mark *mark)
+static size_t			replace_marks(t_tokens *read, t_mark *mark)
 {
 	size_t	n;
 
@@ -104,6 +103,7 @@ static void			replace_marks(t_tokens *read, t_mark *mark)
 		read = read->next;
 	}
 	del_marks(mark);
+	return (n);
 }
 
 int					read_code(int fd, t_out *out)
@@ -121,10 +121,10 @@ int					read_code(int fd, t_out *out)
 	}
 	show_marks(mark);
 	read = del_empty(read);
-	replace_marks(read, mark);
+	out->code_size_int = replace_marks(read, mark);
 	show_tokens(read);
     code_to_bytes(read, out);
 	out->c_exist = 1;
-	//del_tokens(read);
+	del_tokens(read);
 	return (0);
 }
