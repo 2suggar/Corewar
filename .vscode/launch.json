@@ -9,7 +9,7 @@
             "type": "cppdbg",
             "request": "launch",
             "program": "${workspaceFolder}/Assembler/asm",
-            "args": ["Players/Assembly/42.s"],
+            "args": ["Players/Assembly/lol.s"],
             "stopAtEntry": false,
             "cwd": "${workspaceFolder}/Assembler",
             "environment": [],

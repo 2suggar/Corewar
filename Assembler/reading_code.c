@@ -6,7 +6,7 @@
 /*   By: lcutjack <lcutjack@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/18 14:27:58 by lcutjack          #+#    #+#             */
-/*   Updated: 2019/10/05 17:37:58 by lcutjack         ###   ########.fr       */
+/*   Updated: 2019/10/06 20:52:37 by lcutjack         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static size_t		weight(t_tokens *me)
 	n += me->types[0] == T_DIR ? me->command->dir_size : me->types[0];
 	n += me->types[1] == T_DIR ? me->command->dir_size : me->types[1];
 	n += me->types[2] == T_DIR ? me->command->dir_size : me->types[2];
-	printf("HERE: %lu||||||| %d ||||| %d\n", n, me->types[1], me->types[2]);
+	// printf("HERE: %lu||||||| %d ||||| %d\n", n, me->types[1], me->types[2]);
 	return (n);
 }
 
@@ -38,6 +38,8 @@ static t_mark		*fill_mark(t_tokens *read)
 	mark = NULL;
 	while (read)
 	{
+		printf("HERE: %lu\n", n);
+		n += weight(read);
 		if (read->mark && label_correct(read->mark))
 		{
 			start = ft_memalloc(sizeof(t_mark));
@@ -50,8 +52,6 @@ static t_mark		*fill_mark(t_tokens *read)
 		else if (read->mark && (g_error.id = 15) &&
 			(g_error.str_er = read->mark))
 			return (NULL);
-		n += weight(read);
-		// printf("%s : %lu\n", (char*)read->command, n);
 		read = read->next;
 	}
 	return (start);
@@ -96,10 +96,10 @@ static void			replace_marks(t_tokens *read, t_mark *mark)
 				read->values[1] = calc_mark(read->a2, n, mark);
 			if (read->a3)
 				read->values[2] = calc_mark(read->a3, n, mark);
+			n += weight(read);
 			ft_strdel(&read->a1);
 			ft_strdel(&read->a2);
 			ft_strdel(&read->a3);
-			n += weight(read);
 		}
 		read = read->next;
 	}
