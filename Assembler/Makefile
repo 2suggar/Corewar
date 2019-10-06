@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ksenia <ksenia@student.42.fr>              +#+  +:+       +#+         #
+#    By: lcutjack <lcutjack@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/07/19 16:35:27 by lcutjack          #+#    #+#              #
-#    Updated: 2019/10/06 18:50:58 by ksenia           ###   ########.fr        #
+#    Updated: 2019/10/06 21:08:51 by lcutjack         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -44,7 +44,7 @@ all: $(NAME)
 
 
 $(NAME):
-	gcc -g $(SRC) $(INC) -o $(NAME) $(LIB)
+	gcc $(SRC) $(INC) -o $(NAME) $(LIB)
 
 fclean:
 	rm -rf $(NAME) *.o
