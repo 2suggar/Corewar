@@ -52,7 +52,6 @@ void code_to_bytes(t_tokens *tokens, t_out *out)
 				ft_memcpy_rev(&(out->code[i++]), &(tokens->values[j]), 1);
 			else if (tokens->types[j] == 2)
 			{
-				printf("HERE:%d\n", tokens->values[j]);
 				if (tokens->command->dir_size == 2)
 				{
 					ft_memcpy_rev(&(out->code[i]), &(tokens->values[j]), 2);
@@ -64,7 +63,7 @@ void code_to_bytes(t_tokens *tokens, t_out *out)
 					i += 4;
 				}
 			}
-			else if (tokens->types[j] == 3)
+			else if (tokens->types[j] == 4)
 			{
 				ft_memcpy_rev(&(out->code[i]), &(tokens->values[j]), 2);
 				i += 2;

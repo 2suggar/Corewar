@@ -6,7 +6,7 @@
 /*   By: lcutjack <lcutjack@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/18 14:27:58 by lcutjack          #+#    #+#             */
-/*   Updated: 2019/10/04 20:47:02 by lcutjack         ###   ########.fr       */
+/*   Updated: 2019/10/05 17:37:58 by lcutjack         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ static size_t		weight(t_tokens *me)
 	n += me->types[0] == T_DIR ? me->command->dir_size : me->types[0];
 	n += me->types[1] == T_DIR ? me->command->dir_size : me->types[1];
 	n += me->types[2] == T_DIR ? me->command->dir_size : me->types[2];
+	printf("HERE: %lu||||||| %d ||||| %d\n", n, me->types[1], me->types[2]);
 	return (n);
 }
 
@@ -50,6 +51,7 @@ static t_mark		*fill_mark(t_tokens *read)
 			(g_error.str_er = read->mark))
 			return (NULL);
 		n += weight(read);
+		// printf("%s : %lu\n", (char*)read->command, n);
 		read = read->next;
 	}
 	return (start);
