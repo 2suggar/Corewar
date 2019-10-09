@@ -25,4 +25,3 @@ ardefloop:
 
 
 coregeni:
-p
