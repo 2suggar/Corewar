@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   to_file.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ksenia <ksenia@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lcutjack <lcutjack@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/06 18:45:58 by ksenia            #+#    #+#             */
-/*   Updated: 2019/10/06 18:52:53 by ksenia           ###   ########.fr       */
+/*   Updated: 2019/10/09 17:04:03 by lcutjack         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,7 @@ void					code_to_bytes(t_tokens *tokens, t_out *out)
 	int	i;
 
 	i = 0;
+	out->code = ft_memalloc(out->code_size_int);
 	while (tokens)
 	{
 		out->code[i++] = tokens->command->opcode;
@@ -80,7 +81,7 @@ void					code_to_bytes(t_tokens *tokens, t_out *out)
 		tokens = tokens->next;
 	}
 	ft_memcpy_rev(out->code_size, &i, sizeof(int));
-	out->code_size_int = i;
+	// out->code_size_int = i;
 }
 
 void					to_file(t_out	*output, char *filename)
