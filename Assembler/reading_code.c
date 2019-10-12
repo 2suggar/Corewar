@@ -6,7 +6,7 @@
 /*   By: lcutjack <lcutjack@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/18 14:27:58 by lcutjack          #+#    #+#             */
-/*   Updated: 2019/10/09 22:05:44 by lcutjack         ###   ########.fr       */
+/*   Updated: 2019/10/12 03:34:56 by lcutjack         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,24 @@ static size_t		weight(t_tokens *me)
 	n += 1;
 	if (me->command->a_typecode)
 		n += 1;
-	n += me->types[0] == T_DIR ? me->command->dir_size : me->types[0];
-	n += me->types[1] == T_DIR ? me->command->dir_size : me->types[1];
-	n += me->types[2] == T_DIR ? me->command->dir_size : me->types[2];
+	if (me->types[0] == T_DIR)
+		n += me->command->dir_size;
+	else if (me->types[0] == T_IND)
+		n += 2;
+	else
+		n += me->types[0];
+	if (me->types[1] == T_DIR)
+		n += me->command->dir_size;
+	else if (me->types[1] == T_IND)
+		n += 2;
+	else
+		n += me->types[1];
+	if (me->types[2] == T_DIR)
+		n += me->command->dir_size;
+	else if (me->types[2] == T_IND)
+		n += 2;
+	else
+		n += me->types[2];
 	return (n);
 }
 
@@ -38,7 +53,6 @@ static t_mark		*fill_mark(t_tokens *read)
 	mark = NULL;
 	while (read)
 	{
-		// printf("HERE: %lu\n", n);
 		n += weight(read);
 		if (read->mark && label_correct(read->mark))
 		{
@@ -101,7 +115,6 @@ static size_t			replace_marks(t_tokens *read, t_mark *mark)
 			ft_strdel(&read->a2);
 			ft_strdel(&read->a3);
 		}
-		printf("size: %lu\n", weight(read));
 		read = read->next;
 	}
 	del_marks(mark);
@@ -124,8 +137,7 @@ int					read_code(int fd, t_out *out)
 	// show_marks(mark);
 	read = del_empty(read);
 	out->code_size_int = replace_marks(read, mark);
-	printf("SIZE: %d", out->code_size_int);
-	show_tokens(read);
+	// show_tokens(read);
     code_to_bytes(read, out);
 	out->c_exist = 1;
 	del_tokens(read);

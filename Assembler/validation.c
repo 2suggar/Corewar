@@ -6,7 +6,7 @@
 /*   By: lcutjack <lcutjack@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/18 19:01:07 by lcutjack          #+#    #+#             */
-/*   Updated: 2019/10/02 16:24:10 by lcutjack         ###   ########.fr       */
+/*   Updated: 2019/10/12 03:18:40 by lcutjack         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ static t_tokens	*check_line(char *line)
 		((feedback == 3) && (g_error.id = 10)))
 		return (NULL);
 	new = ft_memalloc(sizeof(t_tokens));
+	new->next = NULL;
 	if (feedback == 1)
 	{
 		new->mark = ft_strsub(line, 0, pos);

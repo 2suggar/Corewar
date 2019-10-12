@@ -6,7 +6,7 @@
 /*   By: lcutjack <lcutjack@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/26 17:41:30 by lcutjack          #+#    #+#             */
-/*   Updated: 2019/10/09 17:27:19 by lcutjack         ###   ########.fr       */
+/*   Updated: 2019/10/12 02:55:45 by lcutjack         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ typedef struct	s_out {
 	char		comm[COMMENT_LENGTH];
 	char		com_null[4];
 	char		*code;
-	// char		code[CHAMP_MAX_SIZE];
 	char		c_exist;
 	char		n_exist;
 	int			code_size_int;
