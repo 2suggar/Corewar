@@ -6,7 +6,7 @@
 /*   By: lcutjack <lcutjack@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/01 14:40:53 by lcutjack          #+#    #+#             */
-/*   Updated: 2019/10/06 20:59:10 by lcutjack         ###   ########.fr       */
+/*   Updated: 2019/10/12 04:05:37 by lcutjack         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,4 +38,34 @@ void		show_marks(t_mark *mark)
 		printf("|||%s|||%lu|||\n", mark->mark, mark->size);
 		mark = mark->next;
 	}
+}
+
+static size_t weight_arg(char type, char dir_size)
+{
+	size_t	n;
+
+	n = 0;
+	if (type == T_DIR)
+		n += dir_size;
+	else if (type == T_IND)
+		n += 2;
+	else
+		n += type;
+	return (n);
+}
+
+size_t		weight(t_tokens *me)
+{
+	size_t	n;
+
+	n = 0;
+	if (!me->command)
+		return (0);
+	n += 1;
+	if (me->command->a_typecode)
+		n += 1;
+	n += weight_arg(me->types[0], me->command->dir_size);
+	n += weight_arg(me->types[1], me->command->dir_size);
+	n += weight_arg(me->types[2], me->command->dir_size);
+	return (n);
 }

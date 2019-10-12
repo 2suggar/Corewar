@@ -6,42 +6,11 @@
 /*   By: lcutjack <lcutjack@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/18 14:27:58 by lcutjack          #+#    #+#             */
-/*   Updated: 2019/10/12 03:34:56 by lcutjack         ###   ########.fr       */
+/*   Updated: 2019/10/12 04:05:26 by lcutjack         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
-
-static size_t		weight(t_tokens *me)
-{
-	size_t	n;
-
-	n = 0;
-	if (!me->command)
-		return (0);
-	n += 1;
-	if (me->command->a_typecode)
-		n += 1;
-	if (me->types[0] == T_DIR)
-		n += me->command->dir_size;
-	else if (me->types[0] == T_IND)
-		n += 2;
-	else
-		n += me->types[0];
-	if (me->types[1] == T_DIR)
-		n += me->command->dir_size;
-	else if (me->types[1] == T_IND)
-		n += 2;
-	else
-		n += me->types[1];
-	if (me->types[2] == T_DIR)
-		n += me->command->dir_size;
-	else if (me->types[2] == T_IND)
-		n += 2;
-	else
-		n += me->types[2];
-	return (n);
-}
 
 static t_mark		*fill_mark(t_tokens *read)
 {

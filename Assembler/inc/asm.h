@@ -6,7 +6,7 @@
 /*   By: lcutjack <lcutjack@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/26 17:41:30 by lcutjack          #+#    #+#             */
-/*   Updated: 2019/10/12 02:55:45 by lcutjack         ###   ########.fr       */
+/*   Updated: 2019/10/12 03:59:45 by lcutjack         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,8 @@ void			say_error(void);
 
 char			parse_args(char *line, t_tokens *new);
 char			check_arg(char **arg, char *type, int *value);
+
+size_t			weight(t_tokens *me);
 
 void			read_n_c(int fd, t_out *out);
 int 			read_code(int fd, t_out *out);
