@@ -6,7 +6,7 @@
 /*   By: lcutjack <lcutjack@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/18 14:51:12 by lcutjack          #+#    #+#             */
-/*   Updated: 2019/10/18 20:16:18 by lcutjack         ###   ########.fr       */
+/*   Updated: 2019/10/18 22:58:44 by lcutjack         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ void	del_tokens(t_tokens *me)
 		free(me->a1);
 		free(me->a2);
 		free(me->a3);
-		// free(me);
+		free(me);
 		me = tmp;
 	}
 }

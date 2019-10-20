@@ -6,7 +6,7 @@
 /*   By: lcutjack <lcutjack@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/18 14:27:58 by lcutjack          #+#    #+#             */
-/*   Updated: 2019/10/12 04:05:26 by lcutjack         ###   ########.fr       */
+/*   Updated: 2019/10/20 12:20:46 by lcutjack         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ static int			calc_mark(char *name, size_t n, t_mark *marks)
 	if (!marks)
 	{
 		g_error.id = 14;
-		g_error.str_er = name;
+		g_error.str_er = ft_strdup(name);
 	}
 	return (pos - (int)n);
 }
