@@ -6,7 +6,7 @@
 /*   By: lcutjack <lcutjack@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/01 15:54:34 by lcutjack          #+#    #+#             */
-/*   Updated: 2019/10/09 17:27:23 by lcutjack         ###   ########.fr       */
+/*   Updated: 2019/10/20 13:55:44 by lcutjack         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,21 +102,9 @@ char			parse_args(char *line, t_tokens *new)
 	while (args[n_arg])
 	{
 		if (n_arg > new->command->arg_q && (g_error.id = 12))
-		{
-			// free(args[0]);
-			// free(args[1]);
-			// free(args[2]);
-			// free(args);
-			return (1);
-		}
-		if (check_arg(&args[n_arg], &new->types[n_arg], &new->values[n_arg]))
-		{
-			// free(args[0]);
-			// free(args[1]);
-			// free(args[2]);
-			// free(args);			
-			return (1);
-		}
+			return (del_2mas(args, 1));
+		if (check_arg(&args[n_arg], &new->types[n_arg], &new->values[n_arg]))			
+			return (del_2mas(args, 1));
 		n_arg++;
 	}
 	new->a1 = args[0];

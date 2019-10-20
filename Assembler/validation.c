@@ -6,7 +6,7 @@
 /*   By: lcutjack <lcutjack@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/18 19:01:07 by lcutjack          #+#    #+#             */
-/*   Updated: 2019/10/12 03:18:40 by lcutjack         ###   ########.fr       */
+/*   Updated: 2019/10/20 13:37:14 by lcutjack         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ static char		find_sep(char *l, size_t *p)
 		return (3);
 	return (0);
 }
-/* 1- метка 2- команда 3- аргумент 0- конец строки или коммент */
 
 static void		*free_return(t_tokens *new)
 {

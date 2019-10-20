@@ -6,7 +6,7 @@
 /*   By: lcutjack <lcutjack@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/26 17:41:30 by lcutjack          #+#    #+#             */
-/*   Updated: 2019/10/12 03:59:45 by lcutjack         ###   ########.fr       */
+/*   Updated: 2019/10/20 13:46:23 by lcutjack         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,7 @@ void			del_marks(t_mark *me);
 void			del_output(t_out **out);
 void			del_tokens(t_tokens *me);
 t_tokens		*del_empty(t_tokens *read);
+char			del_2mas(char **me, char back);
 
 t_op			*check_command(char *l, size_t pos);
 
@@ -94,9 +95,9 @@ void			write_magic(t_out *out);
 void        	show_tokens(t_tokens *me);
 void			show_marks(t_mark *mark);
 
-void to_file(t_out	*output, char *filename);
-void code_to_bytes(t_tokens *tokens, t_out *out);
+void 			to_file(t_out	*output, char *filename);
+void			code_to_bytes(t_tokens *tokens, t_out *out);
 
-void	*ft_memcpy_rev(void *dst, const void *src, size_t n);
+void			*ft_memcpy_rev(void *dst, const void *src, size_t n);
 
 #endif

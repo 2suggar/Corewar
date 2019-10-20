@@ -6,13 +6,13 @@
 /*   By: lcutjack <lcutjack@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/01 14:40:53 by lcutjack          #+#    #+#             */
-/*   Updated: 2019/10/12 04:05:37 by lcutjack         ###   ########.fr       */
+/*   Updated: 2019/10/20 13:45:38 by lcutjack         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
 
-void		show_tokens(t_tokens *me)
+void			show_tokens(t_tokens *me)
 {
 	while (me)
 	{
@@ -31,7 +31,7 @@ void		show_tokens(t_tokens *me)
 	}
 }
 
-void		show_marks(t_mark *mark)
+void			show_marks(t_mark *mark)
 {
 	while (mark)
 	{
@@ -40,7 +40,7 @@ void		show_marks(t_mark *mark)
 	}
 }
 
-static size_t weight_arg(char type, char dir_size)
+static size_t	weight_arg(char type, char dir_size)
 {
 	size_t	n;
 
@@ -54,7 +54,7 @@ static size_t weight_arg(char type, char dir_size)
 	return (n);
 }
 
-size_t		weight(t_tokens *me)
+size_t			weight(t_tokens *me)
 {
 	size_t	n;
 
@@ -68,4 +68,15 @@ size_t		weight(t_tokens *me)
 	n += weight_arg(me->types[1], me->command->dir_size);
 	n += weight_arg(me->types[2], me->command->dir_size);
 	return (n);
+}
+
+char			del_2mas(char **me, char back)
+{
+	while (*me)
+	{
+		free(*me);
+		me++;
+	}
+	free(me);
+	return (back);
 }

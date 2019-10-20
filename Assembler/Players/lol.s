@@ -11,7 +11,7 @@ ardefgen:
 	fork 	%:ardefgen
 
 ardefinit:
-	sti		r1,%:ardefl1,%1
+	sti		r1q,%:ardefl1,%1
 	sti		r1,%:ardefchk,%1
 
 ardefwrite:
