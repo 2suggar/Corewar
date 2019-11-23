@@ -6,7 +6,7 @@
 /*   By: lcutjack <lcutjack@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/18 19:01:07 by lcutjack          #+#    #+#             */
-/*   Updated: 2019/10/20 13:37:14 by lcutjack         ###   ########.fr       */
+/*   Updated: 2019/11/16 21:01:57 by lcutjack         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,9 +44,8 @@ static t_tokens	*check_line(char *line)
 		return (NULL);
 	if (!(feedback = find_sep(line, &pos)) ||
 		((feedback == 3) && (g_error.id = 10)))
-		return (NULL);
+		return ((g_error.id = 10) ? NULL : NULL);
 	new = ft_memalloc(sizeof(t_tokens));
-	new->next = NULL;
 	if (feedback == 1)
 	{
 		new->mark = ft_strsub(line, 0, pos);
@@ -85,6 +84,7 @@ t_tokens		*validate(int fd)
 	t_tokens	*new;
 
 	toks = NULL;
+	curr = NULL;
 	while (get_next_line(fd, &line))
 	{
 		if ((new = check_line(line)))
@@ -97,6 +97,7 @@ t_tokens		*validate(int fd)
 		}
 		ft_strdel(&line);
 	}
-	curr->next = NULL;
+	if (curr)
+		curr->next = NULL;
 	return (toks);
 }

@@ -8,7 +8,7 @@
             "name": "(lldb) Launch",
             "type": "cppdbg",
             "request": "launch",
-            "program": "${workspaceFolder}/Assembler/asm",
+            "program": "${workspaceFolder}/asm",
             "args": ["lol.s"],
             "stopAtEntry": false,
             "cwd": "${workspaceFolder}/Assembler",

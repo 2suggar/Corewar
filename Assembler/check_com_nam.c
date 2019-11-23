@@ -6,7 +6,7 @@
 /*   By: lcutjack <lcutjack@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/01 16:46:13 by lcutjack          #+#    #+#             */
-/*   Updated: 2019/10/01 17:15:03 by lcutjack         ###   ########.fr       */
+/*   Updated: 2019/11/16 20:55:26 by lcutjack         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,20 +75,20 @@ void		read_n_c(int fd, t_out *out)
 	{
 		while (get_next_line(fd, &line) && (!*line || *line == COMMENT_CHAR))
 			ft_memdel((void**)&line);
-		if (!ft_strncmp(COMMENT_CMD_STRING, line, c_len))
+		if (line && !ft_strncmp(COMMENT_CMD_STRING, line, c_len))
 		{
-			if (out->c_exist && (g_error.id = 6))
-				break ;
+			if (out->c_exist && (g_error.id = 6) && del_str(&line))
+				return ;
 			read_comment(fd, out, line + c_len);
 		}
-		else if (!ft_strncmp(NAME_CMD_STRING, line, n_len))
+		else if (line && !ft_strncmp(NAME_CMD_STRING, line, n_len))
 		{
-			if (out->n_exist && (g_error.id = 5))
-				break ;
+			if (out->n_exist && (g_error.id = 5) && del_str(&line))
+				return ;
 			read_name(fd, out, line + n_len);
 		}
-		ft_memdel((void**)&line);
-		if (g_error.id)
+		else if ((g_error.id = out->c_exist ? 7 : 8) && del_str(&line))
 			return ;
+		ft_memdel((void**)&line);
 	}
 }

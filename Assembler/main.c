@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ksenia <ksenia@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lcutjack <lcutjack@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/26 17:34:26 by lcutjack          #+#    #+#             */
-/*   Updated: 2019/10/04 15:20:53 by ksenia           ###   ########.fr       */
+/*   Updated: 2019/11/23 15:50:51 by lcutjack         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,12 +54,12 @@ int			main(int ac, char **av)
 			else
 				cook_raw(fd, &out, fname);
 			close(fd);
+			ft_strdel(&fname);
 		}
 		if (g_error.id)
 			say_error();
 		else
 			say_okey(fname);
-		free(fname);
 	}
 	return (0);
 }

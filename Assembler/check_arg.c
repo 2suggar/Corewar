@@ -6,7 +6,7 @@
 /*   By: lcutjack <lcutjack@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/01 15:54:34 by lcutjack          #+#    #+#             */
-/*   Updated: 2019/10/20 13:55:44 by lcutjack         ###   ########.fr       */
+/*   Updated: 2019/11/23 16:10:12 by lcutjack         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,21 +44,15 @@ static char		check_value(int *value, char **s)
 		free(*s);
 		*s = tmp;
 		if (!label_correct(*s) && (g_error.id = 11))
-		{
-			ft_strdel(s);
 			return (1);
-		}
 	}
 	else
 	{
 		*value = ft_atoi(*s);
 		if (!is_number(*s) && (g_error.id = 11))
-		{
-			// g_error.str_er = *s;
-			*s = NULL;
 			return (1);
-		}
-		ft_strdel(s);
+		free(*s);
+		*s = ft_strnew(0);
 	}
 	return (0);
 }
@@ -66,7 +60,6 @@ static char		check_value(int *value, char **s)
 char			check_arg(char **arg, char *type, int *value)
 {
 	char	*new;
-	char	*tmp;
 
 	new = ft_strtrim(*arg);
 	free(*arg);
@@ -76,19 +69,26 @@ char			check_arg(char **arg, char *type, int *value)
 	return (0);
 }
 
-void			check_for_comment(char *line)
+static void		rebase_args(t_tokens *new, int n_arg, char **args)
 {
-	char	*p1;
-	char	*p2;
-
-	p1 = ft_strchr(line, COMMENT_CHAR);
-	p2 = ft_strchr(line, ALT_COMMENT_CHAR);
-	if (!p1 && !p2)
-		return ;
-	if ((p1 > p2 && p2) || !p1)
-		*p2 = '\0';
-	else if ((p2 > p1 && p1) || !p2)
-		*p1 = '\0';
+	if (args[0] && !args[0][0])
+	{
+		free(args[0]);
+		args[0] = NULL;
+	}
+	if (n_arg > 1 && !args[1][0])
+	{
+		free(args[1]);
+		args[1] = NULL;
+	}
+	if (n_arg > 2 && !args[2][0])
+	{
+		free(args[2]);
+		args[2] = NULL;
+	}
+	new->a1 = args[0];
+	new->a2 = n_arg > 1 ? args[1] : NULL;
+	new->a3 = n_arg > 2 ? args[2] : NULL;
 }
 
 char			parse_args(char *line, t_tokens *new)
@@ -103,19 +103,18 @@ char			parse_args(char *line, t_tokens *new)
 	{
 		if (n_arg > new->command->arg_q && (g_error.id = 12))
 			return (del_2mas(args, 1));
-		if (check_arg(&args[n_arg], &new->types[n_arg], &new->values[n_arg]))			
+		if (check_arg(&args[n_arg], &new->types[n_arg], &new->values[n_arg]))
 			return (del_2mas(args, 1));
 		n_arg++;
 	}
-	new->a1 = args[0];
-	new->a2 = n_arg > 1 ? args[1] : NULL;
-	new->a3 = n_arg > 2 ? args[2] : NULL;
+	rebase_args(new, n_arg, args);
 	free(args);
 	if (n_arg != new->command->arg_q && (g_error.id = 12))
 		return (1);
-	if (!(new->types[0] & new->command->arg_type[0]) ||
+	if ((!(new->types[0] & new->command->arg_type[0]) ||
 		(!(new->types[1] & new->command->arg_type[1]) && n_arg > 1) ||
-		(!(new->types[2] & new->command->arg_type[2]) && n_arg > 2))
+		(!(new->types[2] & new->command->arg_type[2]) && n_arg > 2)) &&
+		(g_error.id = 11))
 		return (1);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: lcutjack <lcutjack@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/06 18:45:58 by ksenia            #+#    #+#             */
-/*   Updated: 2019/10/12 02:54:09 by lcutjack         ###   ########.fr       */
+/*   Updated: 2019/11/09 18:44:07 by lcutjack         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,11 +83,11 @@ void					code_to_bytes(t_tokens *tokens, t_out *out)
 	ft_memcpy_rev(out->code_size, &i, sizeof(int));
 }
 
-void					to_file(t_out	*output, char *filename)
+void					to_file(t_out *output, char *filename)
 {
 	int	fd;
 
-    if ((fd = open(filename, O_WRONLY | O_CREAT, 0600)) < 3)
+	if ((fd = open(filename, O_WRONLY | O_CREAT, 0600)) < 3)
 		g_error.id = 10;
 	write(fd, &output->head, 4);
 	write(fd, &output->name, PROG_NAME_LENGTH);
@@ -96,5 +96,5 @@ void					to_file(t_out	*output, char *filename)
 	write(fd, &output->comm, COMMENT_LENGTH);
 	write(fd, &output->com_null, 4);
 	write(fd, output->code, output->code_size_int);
-    close(fd);
+	close(fd);
 }

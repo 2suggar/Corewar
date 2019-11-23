@@ -6,7 +6,7 @@
 /*   By: lcutjack <lcutjack@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/29 16:09:52 by gdamion-          #+#    #+#             */
-/*   Updated: 2019/09/24 16:22:36 by lcutjack         ###   ########.fr       */
+/*   Updated: 2019/10/25 20:38:37 by lcutjack         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <fcntl.h>
-# include <gnl.h>
-# include <printf.h>
+# include "gnl.h"
+# include "ft_printf.h"
 
 typedef struct		s_list
 {

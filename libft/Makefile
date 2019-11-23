@@ -6,7 +6,7 @@
 #    By: lcutjack <lcutjack@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/29 14:13:15 by gdamion-          #+#    #+#              #
-#    Updated: 2019/09/24 16:22:50 by lcutjack         ###   ########.fr        #
+#    Updated: 2019/10/25 19:26:37 by lcutjack         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,13 +36,20 @@ G_SRC = get_next_line.c
 G_SRC_DIR = src_gnl/
 
 ######################## PRINTF ########################
-P_SRC =	ft_basic.c \
-		ft_printf.c \
-		ft_t_csp.c \
-		ft_t_di.c \
-		ft_t_f.c \
-		ft_t_oux.c \
-		what_type.c
+P_SRC =	char.c \
+		  ft_printf.c\
+		  get_types.c\
+		  itoa_d.c\
+		  itoa.c\
+		  itoa2.c\
+		  numeric.c\
+		  parse_start.c\
+		  precision.c\
+		  tools.c\
+		  width.c\
+		  double_to_binary.c\
+		  width2.c\
+		  fd.c
 
 P_SRC_DIR = src_printf/
 ########################################################

@@ -6,23 +6,28 @@
 /*   By: lcutjack <lcutjack@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/18 14:27:58 by lcutjack          #+#    #+#             */
-/*   Updated: 2019/10/20 12:20:46 by lcutjack         ###   ########.fr       */
+/*   Updated: 2019/11/16 20:56:22 by lcutjack         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
 
-static t_mark		*fill_mark(t_tokens *read)
+static void			init(size_t *n, t_mark **mark, t_mark **start)
+{
+	*n = 0;
+	*mark = NULL;
+	*start = NULL;
+}
+
+static t_mark		*fill_mark(t_tokens *read, char status)
 {
 	size_t	n;
 	t_mark	*mark;
 	t_mark	*start;
 
-	n = 0;
-	mark = NULL;
+	init(&n, &mark, &start);
 	while (read)
 	{
-		n += weight(read);
 		if (read->mark && label_correct(read->mark))
 		{
 			start = ft_memalloc(sizeof(t_mark));
@@ -33,8 +38,10 @@ static t_mark		*fill_mark(t_tokens *read)
 			mark = start;
 		}
 		else if (read->mark && (g_error.id = 15) &&
-			(g_error.str_er = read->mark))
+			(g_error.str_er = read->mark) &&
+			(status = 1))
 			return (NULL);
+		n += weight(read);
 		read = read->next;
 	}
 	return (start);
@@ -57,12 +64,13 @@ static int			calc_mark(char *name, size_t n, t_mark *marks)
 	if (!marks)
 	{
 		g_error.id = 14;
+		free(g_error.str_er);
 		g_error.str_er = ft_strdup(name);
 	}
 	return (pos - (int)n);
 }
 
-static size_t			replace_marks(t_tokens *read, t_mark *mark)
+static size_t		replace_marks(t_tokens *read, t_mark *mark)
 {
 	size_t	n;
 
@@ -94,20 +102,21 @@ int					read_code(int fd, t_out *out)
 {
 	t_tokens	*read;
 	t_mark		*mark;
+	char		status;
 
 	if (!(read = validate(fd)))
 		return (1);
-	if (!(mark = fill_mark(read)))
+	status = 0;
+	mark = fill_mark(read, status);
+	if (status == 1)
 	{
 		del_marks(mark);
 		del_tokens(read);
 		return (1);
 	}
-	// show_marks(mark);
 	read = del_empty(read);
 	out->code_size_int = replace_marks(read, mark);
-	// show_tokens(read);
-    code_to_bytes(read, out);
+	code_to_bytes(read, out);
 	out->c_exist = 1;
 	del_tokens(read);
 	return (0);

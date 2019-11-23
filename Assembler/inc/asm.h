@@ -6,7 +6,7 @@
 /*   By: lcutjack <lcutjack@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/26 17:41:30 by lcutjack          #+#    #+#             */
-/*   Updated: 2019/10/20 13:46:23 by lcutjack         ###   ########.fr       */
+/*   Updated: 2019/11/09 20:44:46 by lcutjack         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,6 @@ typedef struct	s_out {
 	int			code_size_int;
 }				t_out;
 
-/* validation part */
-
 typedef struct	s_error
 {
 	char		*filename;
@@ -42,7 +40,6 @@ typedef struct	s_error
 
 extern t_error			g_error;
 
-/* types[0/1/2] тип аргумента который соответствует весу (T_*) */
 typedef struct	s_t
 {
 	struct s_t	*next;
@@ -62,8 +59,6 @@ typedef	struct	s_m
 	size_t		size;
 }				t_mark;
 
-
-
 void			say_error(void);
 
 char			parse_args(char *line, t_tokens *new);
@@ -72,9 +67,9 @@ char			check_arg(char **arg, char *type, int *value);
 size_t			weight(t_tokens *me);
 
 void			read_n_c(int fd, t_out *out);
-int 			read_code(int fd, t_out *out);
+int				read_code(int fd, t_out *out);
 t_tokens		*validate(int fd);
-void		cook_raw(int fd, t_out **out, char *filename); // вернет код ошибки в случае провала и 0 при успешном декодировании
+void			cook_raw(int fd, t_out **out, char *filename);
 
 int				empty(char *s, size_t n);
 void			skip_emptyness(char **p);
@@ -83,19 +78,17 @@ void			del_output(t_out **out);
 void			del_tokens(t_tokens *me);
 t_tokens		*del_empty(t_tokens *read);
 char			del_2mas(char **me, char back);
+char			del_str(char **line);
 
 t_op			*check_command(char *l, size_t pos);
+void			check_for_comment(char *line);
 
 char			label_correct(char *l);
 int				is_number(char *s);
 
 void			write_magic(t_out *out);
 
-/* dont forget to delete */
-void        	show_tokens(t_tokens *me);
-void			show_marks(t_mark *mark);
-
-void 			to_file(t_out	*output, char *filename);
+void			to_file(t_out *output, char *filename);
 void			code_to_bytes(t_tokens *tokens, t_out *out);
 
 void			*ft_memcpy_rev(void *dst, const void *src, size_t n);
