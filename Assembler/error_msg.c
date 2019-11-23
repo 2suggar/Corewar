@@ -6,13 +6,13 @@
 /*   By: lcutjack <lcutjack@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/04 15:20:54 by lcutjack          #+#    #+#             */
-/*   Updated: 2019/11/09 20:39:15 by lcutjack         ###   ########.fr       */
+/*   Updated: 2019/11/23 19:00:45 by lcutjack         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
 
-static char	*g_msg[17] = {
+static char	*g_msg[19] = {
 	"\033[33m; can't allocate memory\n\033[0m",
 	"\033[33m doesn't exist or is invalid for some reasons\n\033[0m",
 	"\033[33m have incorrect extension  [must be \".s\"]\n\033[0m",
@@ -29,7 +29,9 @@ static char	*g_msg[17] = {
 	"\033[33m incorrect command:   \033[0m",
 	"\033[33m this label doesn't exist:   \033[0m",
 	"\033[33m incorrect label:   \033[0m",
-	"\033[33m there is no newline at the end of the file \n\033[0m"
+	"\033[33m there is no newline at the end of the file \n\033[0m",
+	"\033[33m champion name is too long \n\033[0m",
+	"\033[33m champion comment is too long \n\033[0m"
 };
 
 t_error		g_error = {NULL, 0, NULL};

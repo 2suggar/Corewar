@@ -6,31 +6,47 @@
 /*   By: lcutjack <lcutjack@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/01 16:46:13 by lcutjack          #+#    #+#             */
-/*   Updated: 2019/11/16 20:55:26 by lcutjack         ###   ########.fr       */
+/*   Updated: 2019/11/23 19:21:27 by lcutjack         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
 
+static char	*give_full_name(int fd, size_t max_length, char *start)
+{
+	char	*end;
+	char	*str;
+
+	if (!(end = ft_strchr(start, '"')))
+		str = ft_strsub(start, 0, end - start);
+	else
+	{
+		str = ft_strdup(start);
+		while (!(end = ft_strchr(start, '"')) && get_next_line(fd, &start))
+		{
+			ft_strjoin(str, start);
+			ft_strdel(&start);
+		}
+	}
+	if (end && ft_strlen(str) <= max_length)
+		return (str);
+	ft_strdel(&str);
+	g_error.id = end ? 17 : 3;
+	return (NULL);
+}
+
 static void	read_name(int fd, t_out *out, char *line)
 {
 	char	*start;
-	char	*end;
+	char	*name;
 
 	if ((!(start = ft_strchr(line, '"')) || !empty(line, start - line))
 		&& (g_error.id = 3))
 		return ;
-	if ((end = ft_strchr(start + 1, '"')))
-		ft_strncpy(out->name, start + 1, end - start - 1);
-	else
+	if ((name = give_full_name(fd, PROG_NAME_LENGTH, start + 1)))
 	{
-		ft_strcat(out->name, start + 1);
-		while (get_next_line(fd, &start) && !(end = ft_strchr(start, '"')))
-		{
-			ft_strcat(out->name, start);
-			free(start);
-		}
-		ft_strncat(out->name, start, end - start - 1);
+		ft_strcpy(out->name, name);
+		ft_strdel(&name);
 	}
 	out->n_exist = 1;
 }
@@ -38,23 +54,18 @@ static void	read_name(int fd, t_out *out, char *line)
 static void	read_comment(int fd, t_out *out, char *line)
 {
 	char	*start;
-	char	*end;
+	char	*name;
 
 	if ((!(start = ft_strchr(line, '"')) || !empty(line, start - line))
 		&& (g_error.id = 4))
 		return ;
-	if ((end = ft_strchr(start + 1, '"')))
-		ft_strncpy(out->comm, start + 1, end - start - 1);
-	else
+	if ((name = give_full_name(fd, PROG_NAME_LENGTH, start + 1)))
 	{
-		ft_strcat(out->comm, start + 1);
-		while (get_next_line(fd, &start) && !(end = ft_strchr(start, '"')))
-		{
-			ft_strcat(out->comm, start);
-			free(start);
-		}
-		ft_strncat(out->comm, start, end - start - 1);
+		ft_strcpy(out->comm, name);
+		ft_strdel(&name);
 	}
+	else
+		g_error.id += 1;
 	out->c_exist = 1;
 }
 

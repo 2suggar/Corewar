@@ -1,10 +1,7 @@
 # hey ladies
 
-.name " "
-.comment " " 
+.name " 
+.comment "11111111111111111111111111111111111111111111111111111111111" 
 
-live :label
-live 55
+live %55
 
-ld r1, r2
-ld 5, 5

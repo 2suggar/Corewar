@@ -6,7 +6,7 @@
 /*   By: lcutjack <lcutjack@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/01 14:40:53 by lcutjack          #+#    #+#             */
-/*   Updated: 2019/11/16 20:37:37 by lcutjack         ###   ########.fr       */
+/*   Updated: 2019/11/23 19:21:03 by lcutjack         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ void			check_for_comment(char *line)
 
 char			del_str(char **line)
 {
-	if (!*line)
+	if (!line)
 		return (1);
 	ft_strdel(line);
 	return (1);

@@ -6,7 +6,7 @@
 /*   By: lcutjack <lcutjack@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/16 15:20:04 by lcutjack          #+#    #+#             */
-/*   Updated: 2019/10/25 20:39:19 by lcutjack         ###   ########.fr       */
+/*   Updated: 2019/11/23 19:06:48 by lcutjack         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 # include "libft.h"
 
-# define BUFF_SIZE 20
+# define BUFF_SIZE 100
 # define AMOUNT_FD 4
 
 int					get_next_line(const int fd, char **line);
