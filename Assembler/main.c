@@ -6,7 +6,7 @@
 /*   By: lcutjack <lcutjack@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/26 17:34:26 by lcutjack          #+#    #+#             */
-/*   Updated: 2019/11/23 15:50:51 by lcutjack         ###   ########.fr       */
+/*   Updated: 2019/11/29 18:43:00 by lcutjack         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ static void	say_okey(char *fname)
 	ft_putstr_fd(g_error.filename, 1);
 	ft_putstr_fd(" \033[32m ...Writing output to: \033[0m", 1);
 	ft_putendl_fd(fname, 1);
+	ft_strdel(&fname);
 }
 
 int			main(int ac, char **av)
@@ -43,6 +44,7 @@ int			main(int ac, char **av)
 
 	while (--ac)
 	{
+		fname = NULL;
 		g_error.filename = *(++av);
 		g_error.id = 0;
 		if ((fd = open(*av, O_RDONLY)) < 3)
@@ -54,10 +56,10 @@ int			main(int ac, char **av)
 			else
 				cook_raw(fd, &out, fname);
 			close(fd);
-			ft_strdel(&fname);
 		}
-		if (g_error.id)
-			say_error();
+		if (g_error.id) {
+			say_error(fname);
+		}
 		else
 			say_okey(fname);
 	}

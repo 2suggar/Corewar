@@ -6,7 +6,7 @@
 /*   By: lcutjack <lcutjack@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/04 15:20:54 by lcutjack          #+#    #+#             */
-/*   Updated: 2019/11/23 19:00:45 by lcutjack         ###   ########.fr       */
+/*   Updated: 2019/11/29 19:44:57 by lcutjack         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ static char	*g_msg[19] = {
 
 t_error		g_error = {NULL, 0, NULL};
 
-void		say_error(void)
+void		say_error(char *fname)
 {
 	ft_putstr_fd("\033[33mThe file : \033[0m", 2);
 	ft_putstr_fd(g_error.filename, 2);
@@ -47,4 +47,5 @@ void		say_error(void)
 	}
 	g_error.id = 0;
 	ft_strdel(&g_error.str_er);
+	ft_strdel(&fname);
 }
