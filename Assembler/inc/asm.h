@@ -6,7 +6,7 @@
 /*   By: lcutjack <lcutjack@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/26 17:41:30 by lcutjack          #+#    #+#             */
-/*   Updated: 2019/11/29 18:44:47 by lcutjack         ###   ########.fr       */
+/*   Updated: 2019/11/30 16:08:45 by lcutjack         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,7 @@ void			del_tokens(t_tokens *me);
 t_tokens		*del_empty(t_tokens *read);
 char			del_2mas(char **me, char back);
 char			del_str(char **line);
+void			del_3_str(char **s1, char **s2, char **s3);
 
 t_op			*check_command(char *l, size_t pos);
 void			check_for_comment(char *line);
