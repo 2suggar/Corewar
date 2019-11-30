@@ -6,7 +6,7 @@
 #    By: lcutjack <lcutjack@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/24 19:28:38 by bkiehn            #+#    #+#              #
-#    Updated: 2019/11/16 20:13:33 by lcutjack         ###   ########.fr        #
+#    Updated: 2019/11/30 16:46:52 by lcutjack         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,13 +32,13 @@ objs/%.o: srcs/%.c
 	@gcc -c $(FLAGS)  $< -o $@ -I $(INC)
 
 debug:
-	gcc -g3 -o $(NAME) $(SRCS) -I $(INC) -L ./$(LIBRARY) -lft
+	@gcc -g3 -o $(NAME) $(SRCS) -I $(INC) -L ./$(LIBRARY) -lft
 
 clean:
-	rm -f $(OBJS)
+	@rm -f $(OBJS)
 
 fclean: clean
-	rm -f $(NAME)
+	@rm -f $(NAME)
 
 re: fclean all
 
