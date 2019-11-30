@@ -6,7 +6,7 @@
 /*   By: lcutjack <lcutjack@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/11 21:44:53 by bkiehn            #+#    #+#             */
-/*   Updated: 2019/11/16 19:59:18 by lcutjack         ###   ########.fr       */
+/*   Updated: 2019/11/30 14:15:54 by lcutjack         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void		parse_arg(int argc, char **argv, t_rules *rules,
 		if (ft_strequ(argv[arg], "-dump"))
 		{
 			arg++;
-			if (arg <= argc)
+			if (arg < argc && ft_is_ok(argv[arg], ft_isdigit))
 				rules->dump = ft_atoi(argv[arg]);
 			else
 				error_msg(PRINT_USAGE);

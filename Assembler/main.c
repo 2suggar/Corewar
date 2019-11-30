@@ -6,7 +6,7 @@
 /*   By: lcutjack <lcutjack@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/26 17:34:26 by lcutjack          #+#    #+#             */
-/*   Updated: 2019/11/29 18:43:00 by lcutjack         ###   ########.fr       */
+/*   Updated: 2019/11/30 14:22:43 by lcutjack         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,9 +57,8 @@ int			main(int ac, char **av)
 				cook_raw(fd, &out, fname);
 			close(fd);
 		}
-		if (g_error.id) {
+		if (g_error.id)
 			say_error(fname);
-		}
 		else
 			say_okey(fname);
 	}

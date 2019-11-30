@@ -6,7 +6,7 @@
 #    By: lcutjack <lcutjack@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/07/19 16:35:27 by lcutjack          #+#    #+#              #
-#    Updated: 2019/11/23 19:22:15 by lcutjack         ###   ########.fr        #
+#    Updated: 2019/11/30 14:33:47 by lcutjack         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,12 +25,15 @@ OBJ = $(patsubst %.c,%.o,$(SRC))
 
 all: $(NAME)
 
-$(OBJ_DIR)%.o: %.c
-	@mkdir -p $(OBJ_DIR)
-	@gcc $(FLAGS) -c $< -o $@ $(INC)
+# $(OBJ_DIR)%.o: %.c
+	# @mkdir -p $(OBJ_DIR)
+	# @gcc $(FLAGS) -c $< -o $@ $(INC)
 
-$(NAME): $(addprefix $(OBJ_DIR),$(OBJ))
-	@gcc $(FLAGS) $(addprefix $(OBJ_DIR), $(OBJ)) $(LIB) $(INC) -o $(NAME)
+# $(NAME): $(addprefix $(OBJ_DIR),$(OBJ))
+	# @gcc $(FLAGS) $(addprefix $(OBJ_DIR), $(OBJ)) $(LIB) $(INC) -o $(NAME)
+
+$(NAME): 
+	gcc $(FLAGS) -g $(SRC) $(LIB) $(INC) -o $(NAME)
 
 clean:
 	@rm -rf obj
