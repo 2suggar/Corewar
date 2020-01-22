@@ -1,5 +1,5 @@
 .name		"Octobre Rouge V4.2"
-.comment	"And the winner is ..."
+.comment	"And the winner is … "
 
 		st	r100,19
 		ld	%0,r15

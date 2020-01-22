@@ -6,7 +6,7 @@
 /*   By: lcutjack <lcutjack@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/01 16:46:13 by lcutjack          #+#    #+#             */
-/*   Updated: 2019/11/30 16:23:07 by lcutjack         ###   ########.fr       */
+/*   Updated: 2019/11/30 19:03:02 by lcutjack         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,7 @@ void		read_n_c(int fd, t_out *out)
 	size_t	c_len;
 
 	calc_len(&n_len, &c_len);
+	line = NULL;
 	while (!out->c_exist || !out->n_exist)
 	{
 		while (get_next_line(fd, &line) && (!*line || *line == COMMENT_CHAR))
@@ -108,8 +109,8 @@ void		read_n_c(int fd, t_out *out)
 				return ;
 			read_name(fd, out, line + n_len);
 		}
-		else if ((g_error.id = out->c_exist ? 7 : 8) && del_str(&line))
+		else if (!line && (g_error.id = out->c_exist ? 7 : 8) && del_str(&line))
 			return ;
-		ft_memdel((void**)&line);
+		ft_strdel(&line);
 	}
 }
